@@ -39,9 +39,9 @@ namespace RandomizerAPI.Controllers
                 using StreamReader r = new StreamReader(fullPath);
                 string json = r.ReadToEnd();
 
-                //OoTSpoilerLog log = JsonConvert.DeserializeObject<OoTSpoilerLog>(json);
+                OoTSpoilerLog log = JsonConvert.DeserializeObject<OoTSpoilerLog>(json);
 
-                return Json(json);
+                return Json(log);
             }
             throw new System.Exception("Seed file not found.");
         }
