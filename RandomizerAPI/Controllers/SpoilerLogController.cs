@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RandomizerAPI.Models.GameModels;
+using RandomizerAPI.Models.RequestModels;
 using System.IO;
 using System.Net.Http.Headers;
 
@@ -20,9 +21,13 @@ namespace RandomizerAPI.Controllers
         [HttpGet("[action]")]
         public ActionResult Ping() { return Json("pong!"); }
 
-        [HttpGet("[action]")]
-        public ActionResult GetSpoilerLog(string seed)
+        [HttpPost("[action]")]
+        public ActionResult Pong() { return Json("ping!"); }
+
+        [HttpPost("[action]")]
+        public ActionResult GetSpoilerLog(GetSpoilerLogRequest request)
         {
+            var seed = request.Seed;
             string folderName = "Upload";
             string webRootPath = _hostingEnvironment.WebRootPath;
             string newPath = Path.Combine(webRootPath, folderName);
@@ -39,7 +44,9 @@ namespace RandomizerAPI.Controllers
                 using StreamReader r = new StreamReader(fullPath);
                 string json = r.ReadToEnd();
 
-                OoTSpoilerLog log = JsonConvert.DeserializeObject<OoTSpoilerLog>(json);
+                InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
+
+                OoTSpoilerLog log = new OoTSpoilerLog(Inputlog);
 
                 return Json(log);
             }

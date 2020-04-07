@@ -2,6 +2,8 @@
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using RandomizerAPI.Models.GameModels;
 
 namespace RandomizerAPI.Controllers
 {
@@ -40,6 +42,20 @@ namespace RandomizerAPI.Controllers
 					string fullPath = Path.Combine(newPath, fileName);
 					using var stream = new FileStream(fullPath, FileMode.Create);
 					file.CopyTo(stream);
+
+					using StreamReader r = new StreamReader(fullPath);
+					string json = r.ReadToEnd();
+
+					try
+					{
+						InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
+					}
+					catch
+					{
+						//Isn't valid for our object so get rid of it.
+						System.IO.File.Delete(fullPath);
+						throw new System.Exception("File was not in the correct format.");
+					}
 				}
 				return Json("Upload Successful.");
 			}

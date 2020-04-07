@@ -28,7 +28,10 @@ namespace RandomizerAPI
             services.AddControllers();
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                c.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
             });
         }
 
@@ -37,7 +40,7 @@ namespace RandomizerAPI
         {
             if (env.IsDevelopment())
             {
-                app.UseCors(options => options.AllowAnyOrigin());
+                app.UseCors("CorsPolicy");
                 app.UseDeveloperExceptionPage();
             }
 
