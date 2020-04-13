@@ -33,7 +33,15 @@ namespace RandomizerAPI.Models.GameModels
 
             Locations = MasterLocations;
             FreeItem = MasterLocations.SingleOrDefault(location => location.ID == "LinksPocket").ItemAtLocation;
-            MainItems = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.MainItem).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l=>l.Order).ToList();
+            MainItems = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.MainItem).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).ToList();
+
+            //Handle the bottles
+            var bottle = MainItems.SingleOrDefault(mainItem => mainItem.Name == "Bottle");
+            MainItems.Add(bottle);
+            MainItems.Add(bottle);
+            MainItems.Add(bottle);
+
+            MainItems = MainItems.OrderBy(l => l.Order).ToList();
             Equipment = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Equipment).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
             Songs = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Song).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
             DungeonRewards = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.SpiritualStone || location.ItemAtLocation.ItemType == ItemType.Medallion).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
@@ -84,7 +92,9 @@ namespace RandomizerAPI.Models.GameModels
 
             switch (inputItem.Item)
             {
-                case "Deku Stick":
+                case "Deku Stick Capacity":
+                    item.Name = "Deku Stick";
+                    item.ImageURL = $"{item.Name}.ico";
                     item.Order = 1;
                     item.ItemType = ItemType.MainItem;
                     item.Upgrades = new List<Upgrade>()
@@ -93,7 +103,9 @@ namespace RandomizerAPI.Models.GameModels
                          new Upgrade(){ ID = 1, UpgradeText = "30" }
                     };
                     break;
-                case "Deku Nut":
+                case "Deku Nut Capacity":
+                    item.Name = "Deku Nut";
+                    item.ImageURL = $"{item.Name}.ico";
                     item.Order = 2;
                     item.ItemType = ItemType.MainItem;
                     item.Upgrades = new List<Upgrade>()
@@ -148,7 +160,9 @@ namespace RandomizerAPI.Models.GameModels
                         new Upgrade() { ID = 0, UpgradeText = "Ocarina of Time" }
                     };
                     break;
-                case "Bombchu":
+                case "Bombchus (10)":
+                    item.Name = "Bombchu";
+                    item.ImageURL = $"{item.Name}.ico";
                     item.Order = 9;
                     item.ItemType = ItemType.MainItem;
                     break;
@@ -157,6 +171,7 @@ namespace RandomizerAPI.Models.GameModels
                     item.ItemType = ItemType.MainItem;
                     break;
                 case "Progressive Hookshot":
+                    item.Name = "Hookshot";
                     item.Order = 10;
                     item.ItemType = ItemType.MainItem;
                     item.Upgrades = new List<Upgrade>()
@@ -189,14 +204,20 @@ namespace RandomizerAPI.Models.GameModels
                     item.ItemType = ItemType.MainItem;
                     break;
                 case "Bottle with Letter":
+                    item.Name = "Bottle";
+                    item.ImageURL = $"{item.Name}.ico";
                     item.Order = 17;
                     item.ItemType = ItemType.MainItem;
                     break;
                 case "Bottle with Big Poe":
+                    item.Name = "Bottle";
+                    item.ImageURL = $"{item.Name}.ico";
                     item.Order = 18;
                     item.ItemType = ItemType.MainItem;
                     break;
-                case "Bottle With Milk":
+                case "Bottle with Milk":
+                    item.Name = "Bottle";
+                    item.ImageURL = $"{item.Name}.ico";
                     item.Order = 19;
                     item.ItemType = ItemType.MainItem;
                     break;
@@ -243,6 +264,7 @@ namespace RandomizerAPI.Models.GameModels
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Progressive Scale Upgrade":
+                    item.Name = "Silver Scale";
                     item.Order = 29;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
@@ -251,6 +273,7 @@ namespace RandomizerAPI.Models.GameModels
                     };
                     break;
                 case "Progressive Strength Upgrade":
+                    item.Name = "Goron Bracelet";
                     item.Order = 30;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
@@ -260,6 +283,7 @@ namespace RandomizerAPI.Models.GameModels
                     };
                     break;
                 case "Progressive Wallet":
+                    item.Name = "Wallet";
                     item.Order = 31;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
