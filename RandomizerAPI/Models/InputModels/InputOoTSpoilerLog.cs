@@ -33,20 +33,20 @@ namespace RandomizerAPI.Models.GameModels
         [JsonProperty("locations")]
         public OOTInputLocations Locations { get; set; }
 
-        [JsonProperty(":woth_locations")]
-        public WothLocations WothLocations { get; set; }
+        //[JsonProperty(":woth_locations")]
+        //public WothLocations WothLocations { get; set; }
 
-        [JsonProperty(":barren_regions")]
-        public string[] BarrenRegions { get; set; }
+        //[JsonProperty(":barren_regions")]
+        //public string[] BarrenRegions { get; set; }
 
         [JsonProperty("gossip_stones")]
         public GossipStones GossipStones { get; set; }
 
-        [JsonProperty(":playthrough")]
-        public Dictionary<string, Dictionary<string, string>> Playthrough { get; set; }
+        //[JsonProperty(":playthrough")]
+        //public Dictionary<string, Dictionary<string, string>> Playthrough { get; set; }
 
-        [JsonProperty(":entrance_playthrough")]
-        public Dictionary<string, EntrancePlaythrough> EntrancePlaythrough { get; set; }
+        //[JsonProperty(":entrance_playthrough")]
+        //public Dictionary<string, EntrancePlaythrough> EntrancePlaythrough { get; set; }
     }
 
     public partial class Dungeons

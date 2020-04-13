@@ -15,6 +15,7 @@ namespace RandomizerAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "AllowOrigin";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,19 +29,29 @@ namespace RandomizerAPI
             services.AddControllers();
             services.AddCors(c =>
             {
-                c.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
+                //c.AddPolicy("CorsPolicy",
+                //    builder => builder.AllowAnyOrigin()
+                //    .AllowAnyMethod()
+                //    .AllowAnyHeader());
+                c.AddPolicy(name: MyAllowSpecificOrigins,
+                              options =>
+                                  options
+                                  .WithOrigins("https://randomizerapi-dev.ilaena.net/",
+                                                      "https://randomizerapi.ilaena.net/",
+                                                      "https://localhost:4200/",
+                                                      "https://localhost:44362/")
+                                  .AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader());
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(MyAllowSpecificOrigins);
             if (env.IsDevelopment())
             {
-                app.UseCors("CorsPolicy");
                 app.UseDeveloperExceptionPage();
             }
 
