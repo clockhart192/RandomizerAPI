@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RandomizerAPI.HubConfig;
 
 namespace RandomizerAPI
 {
@@ -26,30 +27,50 @@ namespace RandomizerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddCors(c =>
+            //services.AddCors(c =>
+            //{
+            //    //c.AddPolicy("CorsPolicy",
+            //    //    builder => builder.AllowAnyOrigin()
+            //    //    .AllowAnyMethod()
+            //    //    .AllowAnyHeader());
+            //    c.AddPolicy(name: MyAllowSpecificOrigins,
+            //                  options =>
+            //                      options
+            //                      .WithOrigins("https://randomizerapi-dev.ilaena.net/",
+            //                                          "https://randomizerapi.ilaena.net/",
+            //                                          "https://localhost:4200/",
+            //                                          "http://localhost:4200/",
+            //                                          "https://localhost:44362/")
+            //                      //.AllowAnyOrigin()
+            //                      .AllowAnyMethod()
+            //                      .AllowAnyHeader()
+            //                      .AllowCredentials());
+            //});
+            services.AddCors(options =>
             {
-                //c.AddPolicy("CorsPolicy",
-                //    builder => builder.AllowAnyOrigin()
-                //    .AllowAnyMethod()
-                //    .AllowAnyHeader());
-                c.AddPolicy(name: MyAllowSpecificOrigins,
-                              options =>
-                                  options
-                                  .WithOrigins("https://randomizerapi-dev.ilaena.net/",
-                                                      "https://randomizerapi.ilaena.net/",
-                                                      "https://localhost:4200/",
-                                                      "https://localhost:44362/")
-                                  .AllowAnyOrigin()
-                                  .AllowAnyMethod()
-                                  .AllowAnyHeader());
+                options.AddPolicy("CorsPolicy", builder => builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             });
+            services.AddSignalR().AddJsonProtocol(options => {
+                options.PayloadSerializerOptions.PropertyNamingPolicy = null; });
+            services.AddControllers(); 
+            services.AddMvc(setupAction => {
+                setupAction.EnableEndpointRouting = false;
+            }).AddJsonOptions(jsonOptions =>
+            {
+                jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+            })
+         .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(MyAllowSpecificOrigins);
+            //app.UseCors(MyAllowSpecificOrigins);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,11 +80,14 @@ namespace RandomizerAPI
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SpoilerLogSessionHub>("/spoilerLogSession");
             });
         }
     }

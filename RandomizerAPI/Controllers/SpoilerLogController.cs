@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
+using RandomizerAPI.HubConfig;
 using RandomizerAPI.Models.GameModels;
 using RandomizerAPI.Models.RequestModels;
+using RandomizerAPI.TimerFeatures;
+using System;
 using System.IO;
 using System.Net.Http.Headers;
 
@@ -14,11 +18,14 @@ namespace RandomizerAPI.Controllers
     public class SpoilerLogController : Controller
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private IHubContext<SpoilerLogSessionHub> _hub;
 
-        public SpoilerLogController(IWebHostEnvironment hostingEnvironment)
+        public SpoilerLogController(IWebHostEnvironment hostingEnvironment, IHubContext<SpoilerLogSessionHub> hub)
         {
             _hostingEnvironment = hostingEnvironment;
+            _hub = hub;
         }
+
         [HttpGet("[action]")]
         public ActionResult Ping() { return Json("pong!"); }
 
@@ -52,6 +59,13 @@ namespace RandomizerAPI.Controllers
                 return Json(log);
             }
             throw new System.Exception("Seed file not found.");
+        }
+
+        [HttpPost("[action]")]
+        public ActionResult SaveSpoilerLog(SaveSpoilerLogRequest request)
+        {
+            _hub.Clients.All.SendAsync("sendSpoilerData", request.SpoilerLog);
+            return Json(request.SpoilerLog);
         }
     }
 }

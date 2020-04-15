@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System.IO;
 
 namespace RandomizerAPI.Models.GameModels
 {
@@ -16,7 +17,7 @@ namespace RandomizerAPI.Models.GameModels
         public List<Item> Songs { get; set; }
         public List<Item> DungeonRewards { get; set; }
 
-        public OoTSpoilerLog(InputOoTSpoilerLog inputLog)
+        private void Initialize(InputOoTSpoilerLog inputLog)
         {
             //Base Class Values
             Version = inputLog.Version;
@@ -40,11 +41,72 @@ namespace RandomizerAPI.Models.GameModels
             MainItems.Add(bottle);
             MainItems.Add(bottle);
             MainItems.Add(bottle);
-
             MainItems = MainItems.OrderBy(l => l.Order).ToList();
-            Equipment = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Equipment).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
+
+            Equipment = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Equipment).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).ToList();
+            //Handle the Master Sword
+            var masterSword = new Item()
+            {
+                Name = "Master Sword",
+                ImageURL = $"Master Sword.ico",
+                Model = null,
+                Price = 0,
+                LocationNames = null,
+                HasMultipleLocations = false,
+                Upgrades = null,
+                ItemType = ItemType.Equipment,
+                Order = 21,
+                Revealed = true
+            };
+            var kokiriTunic = new Item()
+            {
+                Name = "Kokiri Tunic",
+                ImageURL = $"Kokiri Tunic.ico",
+                Model = null,
+                Price = 0,
+                LocationNames = null,
+                HasMultipleLocations = false,
+                Upgrades = null,
+                ItemType = ItemType.Equipment,
+                Order = 26,
+                Revealed = true
+            };
+            Equipment.Add(masterSword);
+            Equipment.Add(kokiriTunic);
+            Equipment = Equipment.OrderBy(l => l.Order).ToList();
+
             Songs = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Song).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
             DungeonRewards = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.SpiritualStone || location.ItemAtLocation.ItemType == ItemType.Medallion).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
+
+        }
+
+        public OoTSpoilerLog() { }
+
+        public OoTSpoilerLog(string seed, string webRootPath)
+        {
+            string folderName = "Upload";
+            string newPath = Path.Combine(webRootPath, folderName);
+            if (Directory.Exists(newPath))
+            {
+                DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(newPath);
+                FileInfo[] filesInDir = hdDirectoryInWhichToSearch.GetFiles("*" + seed + "*.*");
+
+                if (filesInDir.Length > 1)
+                    throw new System.Exception($"Multiple Files with seed ({seed}) found.");
+
+                string fileName = filesInDir[0].Name.Trim('"');
+                string fullPath = Path.Combine(newPath, fileName);
+                using StreamReader r = new StreamReader(fullPath);
+                string json = r.ReadToEnd();
+
+                InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
+
+                Initialize(Inputlog);
+            }
+        }
+        public OoTSpoilerLog(InputOoTSpoilerLog inputLog)
+        {
+            Initialize(inputLog);
         }
 
         private List<Location> MapLocations(object inputLocations)
@@ -230,7 +292,7 @@ namespace RandomizerAPI.Models.GameModels
                     item.Order = 21;
                     item.ItemType = ItemType.Equipment;
                     break;
-                case "Biggorons Sword":
+                case "Biggoron Sword":
                     item.Order = 22;
                     item.ItemType = ItemType.Equipment;
                     break;
@@ -244,28 +306,32 @@ namespace RandomizerAPI.Models.GameModels
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Mirror Shield":
-                    item.Order = 24;
-                    item.ItemType = ItemType.Equipment;
-                    break;
-                case "Goron Tunic":
                     item.Order = 25;
                     item.ItemType = ItemType.Equipment;
                     break;
-                case "Zora Tunic":
+                case "Kokiri Tunic":
                     item.Order = 26;
                     item.ItemType = ItemType.Equipment;
                     break;
-                case "Iron Boots":
+                case "Goron Tunic":
                     item.Order = 27;
                     item.ItemType = ItemType.Equipment;
                     break;
-                case "Hover Boots":
+                case "Zora Tunic":
+                    item.Order = 27;
+                    item.ItemType = ItemType.Equipment;
+                    break;
+                case "Iron Boots":
                     item.Order = 28;
+                    item.ItemType = ItemType.Equipment;
+                    break;
+                case "Hover Boots":
+                    item.Order = 29;
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Progressive Scale Upgrade":
                     item.Name = "Silver Scale";
-                    item.Order = 29;
+                    item.Order = 30;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -274,7 +340,8 @@ namespace RandomizerAPI.Models.GameModels
                     break;
                 case "Progressive Strength Upgrade":
                     item.Name = "Goron Bracelet";
-                    item.Order = 30;
+                    item.ImageURL = $"Golden Gauntlets.ico";
+                    item.Order = 31;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -284,7 +351,7 @@ namespace RandomizerAPI.Models.GameModels
                     break;
                 case "Progressive Wallet":
                     item.Name = "Wallet";
-                    item.Order = 31;
+                    item.Order = 32;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -294,7 +361,7 @@ namespace RandomizerAPI.Models.GameModels
                     };
                     break;
                 case "Magic Meter":
-                    item.Order = 32;
+                    item.Order = 33;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -302,74 +369,96 @@ namespace RandomizerAPI.Models.GameModels
                     };
                     break;
                 case "Stone of Agony":
-                    item.Order = 33;
-                    item.ItemType = ItemType.Equipment;
-                    break;
-                case "Gerudo Membership Card":
                     item.Order = 34;
                     item.ItemType = ItemType.Equipment;
                     break;
-                case "Zeldas Lulaby":
+                case "Gerudo Membership Card":
+                    item.Name = "Gerudo Card";
+                    item.Order = 35;
+                    item.ItemType = ItemType.Equipment;
+                    break;
+                case "Zeldas Lullaby":
+                    item.Order = 40;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Eponas Song":
+                    item.Order = 41;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Sarias Song":
+                    item.Order = 42;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Suns Song":
+                    item.Order = 43;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Song of Time":
+                    item.Order = 44;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Song of Storms":
+                    item.Order = 45;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Minuet of Forest":
+                    item.Order = 46;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Bolero of Fire":
+                    item.Order = 47;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Serenade of Water":
+                    item.Order = 48;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Nocturne of Shadow":
+                    item.Order = 49;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Requiem of Spirit":
+                    item.Order = 50;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Prelude of Light":
+                    item.Order = 51;
                     item.ItemType = ItemType.Song;
                     break;
                 case "Kokiri Emerald":
+                    item.Order = 66;
                     item.ItemType = ItemType.SpiritualStone;
                     break;
                 case "Goron Ruby":
+                    item.Order = 67;
                     item.ItemType = ItemType.SpiritualStone;
                     break;
                 case "Zora Sapphire":
+                    item.Order = 68;
                     item.ItemType = ItemType.SpiritualStone;
                     break;
                 case "Forest Medallion":
+                    item.Order = 60;
                     item.ItemType = ItemType.Medallion;
                     break;
                 case "Fire Medallion":
+                    item.Order = 61;
                     item.ItemType = ItemType.Medallion;
                     break;
                 case "Water Medallion":
+                    item.Order = 62;
                     item.ItemType = ItemType.Medallion;
                     break;
                 case "Shadow Medallion":
+                    item.Order = 63;
                     item.ItemType = ItemType.Medallion;
                     break;
                 case "Spirit Medallion":
+                    item.Order = 64;
                     item.ItemType = ItemType.Medallion;
                     break;
                 case "Light Medallion":
+                    item.Order = 65;
                     item.ItemType = ItemType.Medallion;
                     break;
                 default:
