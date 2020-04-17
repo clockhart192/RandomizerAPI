@@ -29,43 +29,18 @@ namespace RandomizerAPI.Controllers
 			try
 			{
 				var file = Request.Form.Files[0];
-				string folderName = "Upload";
-				string webRootPath = _hostingEnvironment.WebRootPath;
-				string newPath = Path.Combine(webRootPath, folderName);
-				if (!Directory.Exists(newPath))
-				{
-					Directory.CreateDirectory(newPath);
-				}
 				if (file.Length > 0)
 				{
-					string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-					string fullPath = Path.Combine(newPath, fileName);
-					using var stream = new FileStream(fullPath, FileMode.Create);
-					file.CopyTo(stream);
-
-					using StreamReader r = new StreamReader(fullPath);
-					string json = r.ReadToEnd();
-
-					try
-					{
-						InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
-					}
-					catch
-					{
-						//Isn't valid for our object so get rid of it.
-						System.IO.File.Delete(fullPath);
-						throw new System.Exception("File was not in the correct format.");
-					}
+					var reader = new StreamReader(file.OpenReadStream());
+					OoTSpoilerLog log = new OoTSpoilerLog(JsonConvert.DeserializeObject<InputOoTSpoilerLog>(reader.ReadToEnd()));
+					return Json(log);
 				}
-				return Json("Upload Successful.");
+				return Json($"Upload Failed: No file found.");
 			}
 			catch (System.Exception ex)
 			{
 				return Json("Upload Failed: " + ex.Message);
 			}
 		}
-
-		
-
 	}
 }

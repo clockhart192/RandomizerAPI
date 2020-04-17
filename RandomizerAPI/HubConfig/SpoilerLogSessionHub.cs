@@ -21,5 +21,14 @@ namespace RandomizerAPI.HubConfig
 
             //await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the group {groupName}.");
         }
+
+        public async Task Send(object payload, string method, string groupName = "")
+        {
+            //await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+
+            await Clients.Others.SendAsync(method, payload);
+
+            //await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
+        }
     }
 }

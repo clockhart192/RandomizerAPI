@@ -32,40 +32,40 @@ namespace RandomizerAPI.Controllers
         [HttpPost("[action]")]
         public ActionResult Pong() { return Json("ping!"); }
 
-        [HttpPost("[action]")]
-        public ActionResult GetSpoilerLog(GetSpoilerLogRequest request)
-        {
-            var seed = request.Seed;
-            string folderName = "Upload";
-            string webRootPath = _hostingEnvironment.WebRootPath;
-            string newPath = Path.Combine(webRootPath, folderName);
-            if (Directory.Exists(newPath))
-            {
-                DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(newPath);
-                FileInfo[] filesInDir = hdDirectoryInWhichToSearch.GetFiles("*" + seed + "*.*");
+        //[HttpPost("[action]")]
+        //public ActionResult GetSpoilerLog(GetSpoilerLogRequest request)
+        //{
+        //    var seed = request.Seed;
+        //    string folderName = "Upload";
+        //    string webRootPath = _hostingEnvironment.WebRootPath;
+        //    string newPath = Path.Combine(webRootPath, folderName);
+        //    if (Directory.Exists(newPath))
+        //    {
+        //        DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(newPath);
+        //        FileInfo[] filesInDir = hdDirectoryInWhichToSearch.GetFiles("*" + seed + "*.*");
 
-                if (filesInDir.Length > 1)
-                    throw new System.Exception($"Multiple Files with seed ({seed}) found.");
+        //        if (filesInDir.Length > 1)
+        //            throw new System.Exception($"Multiple Files with seed ({seed}) found.");
 
-                string fileName = filesInDir[0].Name.Trim('"');
-                string fullPath = Path.Combine(newPath, fileName);
-                using StreamReader r = new StreamReader(fullPath);
-                string json = r.ReadToEnd();
+        //        string fileName = filesInDir[0].Name.Trim('"');
+        //        string fullPath = Path.Combine(newPath, fileName);
+        //        using StreamReader r = new StreamReader(fullPath);
+        //        string json = r.ReadToEnd();
 
-                InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
+        //        InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
 
-                OoTSpoilerLog log = new OoTSpoilerLog(Inputlog);
+        //        OoTSpoilerLog log = new OoTSpoilerLog(Inputlog);
 
-                return Json(log);
-            }
-            throw new System.Exception("Seed file not found.");
-        }
+        //        return Json(log);
+        //    }
+        //    throw new System.Exception("Seed file not found.");
+        //}
 
-        [HttpPost("[action]")]
-        public ActionResult SaveSpoilerLog(SaveSpoilerLogRequest request)
-        {
-            _hub.Clients.All.SendAsync("sendSpoilerData", request.SpoilerLog);
-            return Json(request.SpoilerLog);
-        }
+        //[HttpPost("[action]")]
+        //public ActionResult SaveSpoilerLog(SaveSpoilerLogRequest request)
+        //{
+        //    _hub.Clients.All.SendAsync("sendSpoilerData", request.SpoilerLog);
+        //    return Json(request.SpoilerLog);
+        //}
     }
 }

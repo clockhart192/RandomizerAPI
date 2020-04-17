@@ -9,5 +9,6 @@ namespace RandomizerAPI.Models.RequestModels
     {
         public string ID { get; set; }
         public string Password { get; set; }
+        public View SessionView { get; set; } = View.Spectator;
     }
 }

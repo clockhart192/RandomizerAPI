@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using RandomizerAPI.HubConfig;
+using RandomizerAPI.Models;
 using RandomizerAPI.Models.GameModels;
+using RandomizerAPI.Models.Repository;
 using RandomizerAPI.Models.RequestModels;
+using RandomizerAPI.Models.ResponseModels;
 
 namespace RandomizerAPI.Controllers
 {
@@ -16,13 +14,19 @@ namespace RandomizerAPI.Controllers
     [ApiController]
     public class SessionController : Controller
     {
-        private readonly IWebHostEnvironment _hostingEnvironment;
-        private IHubContext<SpoilerLogSessionHub> _hub;
+        //private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IHubContext<SpoilerLogSessionHub> _hub;
+        private readonly IDataRepository<RandomizerSession> _dataRepository;
 
-        public SessionController(IWebHostEnvironment hostingEnvironment, IHubContext<SpoilerLogSessionHub> hub)
+        public SessionController(
+            // IWebHostEnvironment hostingEnvironment, 
+            IHubContext<SpoilerLogSessionHub> hub,
+            IDataRepository<RandomizerSession> dataRepository
+            )
         {
-            _hostingEnvironment = hostingEnvironment;
+            //_hostingEnvironment = hostingEnvironment;
             _hub = hub;
+            _dataRepository = dataRepository;
         }
 
         [HttpGet("[action]")]
@@ -34,31 +38,48 @@ namespace RandomizerAPI.Controllers
         [HttpPost("[action]")]
         public ActionResult CreateSession(CreateSessionRequest request)
         {
-            OoTSpoilerLog SpoilerLog = new OoTSpoilerLog(request.Seed, _hostingEnvironment.WebRootPath);
+            OoTSpoilerLog SpoilerLog = request.SpoilerLog;
 
-            var RandomizerSession = new OoTRandomizerSession()
+            var session = new RandomizerSession()
             {
                 SessionID = request.ID,
-                SpoilerLog = SpoilerLog
+                Password = request.Password,
+                Game = request.Game,
+                SpoilerLog = JsonConvert.SerializeObject(SpoilerLog)
             };
 
-            _hub.Groups.AddToGroupAsync(Guid.NewGuid().ToString(), request.ID);
+            _dataRepository.Add(session);
+
+            var RandomizerSession = new OoTRandomizerSession(session, Models.View.Player);
+
 
             return Json(RandomizerSession);
         }
 
         [HttpPost("[action]")]
-        public ActionResult JoinSession(JoinSessionRequest request)
+        public ActionResult SaveSession(SaveSpoilerLogRequest request)
         {
-            OoTSpoilerLog SpoilerLog = new OoTSpoilerLog("KOXET6365B", _hostingEnvironment.WebRootPath);
+            var original = _dataRepository.Get(request.ID);
+            var updated = original;
+            updated.SpoilerLog = JsonConvert.SerializeObject(request.SpoilerLog);
+            _dataRepository.Update(original, updated);
 
-            var RandomizerSession = new OoTRandomizerSession()
+            var resp = new SaveSessionResponse()
             {
-                SessionID = request.ID,
-                SpoilerLog = SpoilerLog
+                ID = request.ID,
+                SpoilerLog = request.SpoilerLog
             };
 
-            _hub.Groups.AddToGroupAsync(Guid.NewGuid().ToString(), request.ID);
+            _hub.Clients.All.SendAsync("sendSpoilerData", resp);
+            return Json(resp);
+        }
+
+        [HttpPost("[action]")]
+        public ActionResult JoinSession(JoinSessionRequest request)
+        {
+            var session = _dataRepository.Get(request.ID);
+
+            var RandomizerSession = new OoTRandomizerSession(session, request.SessionView);
 
             return Json(RandomizerSession);
         }

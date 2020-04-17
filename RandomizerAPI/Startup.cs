@@ -6,17 +6,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RandomizerAPI.HubConfig;
+using RandomizerAPI.Models;
+using RandomizerAPI.Models.Repository;
+using RandomizerAPI.Models.DataManager;
 
 namespace RandomizerAPI
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "AllowOrigin";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -49,14 +52,24 @@ namespace RandomizerAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins("http://localhost:4200", "https://randomizerapi-dev.ilaena.net/","https://randomizerapi.ilaena.net/")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());
             });
-            services.AddSignalR().AddJsonProtocol(options => {
+            services.AddSignalR(hubOptions =>
+            { 
+                hubOptions.ClientTimeoutInterval = TimeSpan.FromMinutes(120);
+                hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(1);
+            }
+                ).AddJsonProtocol(options => {
                 options.PayloadSerializerOptions.PropertyNamingPolicy = null; });
+
+            services.AddDbContext<RandomizerSessionContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:RandomizerDB"]));
+            services.AddScoped<IDataRepository<RandomizerSession>, RandomizerManager>();
+
             services.AddControllers(); 
+
             services.AddMvc(setupAction => {
                 setupAction.EnableEndpointRouting = false;
             }).AddJsonOptions(jsonOptions =>
@@ -70,7 +83,6 @@ namespace RandomizerAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseCors(MyAllowSpecificOrigins);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
