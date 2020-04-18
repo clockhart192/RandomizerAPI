@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using RandomizerAPI.Models.GameModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using RandomizerAPI.Models.GameModels;
 
 namespace RandomizerAPI.Models.RequestModels
 {

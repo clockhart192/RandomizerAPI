@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace RandomizerAPI.Models.RequestModels
 {
-    public class GetSpoilerLogRequest
+    public class DeleteSessionRequest
     {
-        public string Seed { get; set; }
+        public RandomizerSession Session { get; set; }
     }
 }

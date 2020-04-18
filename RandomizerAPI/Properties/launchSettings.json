@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/spoilerlog/GetSpoilerLog?seed=KOXET6365B",
+      "launchUrl": "api/Session/Ping",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

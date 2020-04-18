@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RandomizerAPI.Models.GameModels
 {
@@ -832,91 +830,91 @@ namespace RandomizerAPI.Models.GameModels
     public partial class OOTInputLocations
     {
         [JsonProperty("Links Pocket")]
-        public string LinksPocket { get; set; }
+        public OOTInputLocationItem LinksPocket { get; set; }
 
         [JsonProperty("Queen Gohma")]
-        public string QueenGohma { get; set; }
+        public OOTInputLocationItem QueenGohma { get; set; }
 
         [JsonProperty("King Dodongo")]
-        public string KingDodongo { get; set; }
+        public OOTInputLocationItem KingDodongo { get; set; }
 
         [JsonProperty("Barinade")]
-        public string Barinade { get; set; }
+        public OOTInputLocationItem Barinade { get; set; }
 
         [JsonProperty("Phantom Ganon")]
-        public string PhantomGanon { get; set; }
+        public OOTInputLocationItem PhantomGanon { get; set; }
 
         [JsonProperty("Volvagia")]
-        public string Volvagia { get; set; }
+        public OOTInputLocationItem Volvagia { get; set; }
 
         [JsonProperty("Morpha")]
-        public string Morpha { get; set; }
+        public OOTInputLocationItem Morpha { get; set; }
 
         [JsonProperty("Bongo Bongo")]
-        public string BongoBongo { get; set; }
+        public OOTInputLocationItem BongoBongo { get; set; }
 
         [JsonProperty("Twinrova")]
-        public string Twinrova { get; set; }
+        public OOTInputLocationItem Twinrova { get; set; }
 
         [JsonProperty("Song from Saria")]
-        public string SongFromSaria { get; set; }
+        public OOTInputLocationItem SongFromSaria { get; set; }
 
         [JsonProperty("Sheik Forest Song")]
-        public string SheikForestSong { get; set; }
+        public OOTInputLocationItem SheikForestSong { get; set; }
 
         [JsonProperty("Song from Ocarina of Time")]
-        public string SongFromOcarinaOfTime { get; set; }
+        public OOTInputLocationItem SongFromOcarinaOfTime { get; set; }
 
         [JsonProperty("Sheik at Colossus")]
-        public string SheikAtColossus { get; set; }
+        public OOTInputLocationItem SheikAtColossus { get; set; }
 
         [JsonProperty("Sheik at Temple")]
-        public string SheikAtTemple { get; set; }
+        public OOTInputLocationItem SheikAtTemple { get; set; }
 
         [JsonProperty("Impa at Castle")]
-        public string ImpaAtCastle { get; set; }
+        public OOTInputLocationItem ImpaAtCastle { get; set; }
 
         [JsonProperty("Sheik in Kakariko")]
-        public string SheikInKakariko { get; set; }
+        public OOTInputLocationItem SheikInKakariko { get; set; }
 
         [JsonProperty("Song at Windmill")]
-        public string SongAtWindmill { get; set; }
+        public OOTInputLocationItem SongAtWindmill { get; set; }
 
         [JsonProperty("Song from Composer Grave")]
-        public string SongFromComposerGrave { get; set; }
+        public OOTInputLocationItem SongFromComposerGrave { get; set; }
 
         [JsonProperty("Sheik in Crater")]
-        public string SheikInCrater { get; set; }
+        public OOTInputLocationItem SheikInCrater { get; set; }
 
         [JsonProperty("Song from Malon")]
-        public string SongFromMalon { get; set; }
+        public OOTInputLocationItem SongFromMalon { get; set; }
 
         [JsonProperty("Sheik in Ice Cavern")]
-        public string SheikInIceCavern { get; set; }
+        public OOTInputLocationItem SheikInIceCavern { get; set; }
 
         [JsonProperty("Kokiri Sword Chest")]
-        public string KokiriSwordChest { get; set; }
+        public OOTInputLocationItem KokiriSwordChest { get; set; }
 
         [JsonProperty("GS Kokiri Know It All House")]
-        public string GsKokiriKnowItAllHouse { get; set; }
+        public OOTInputLocationItem GsKokiriKnowItAllHouse { get; set; }
 
         [JsonProperty("GS Kokiri Bean Patch")]
-        public string GsKokiriBeanPatch { get; set; }
+        public OOTInputLocationItem GsKokiriBeanPatch { get; set; }
 
         [JsonProperty("GS Kokiri House of Twins")]
-        public string GsKokiriHouseOfTwins { get; set; }
+        public OOTInputLocationItem GsKokiriHouseOfTwins { get; set; }
 
         [JsonProperty("Mido Chest Top Left")]
-        public string MidoChestTopLeft { get; set; }
+        public OOTInputLocationItem MidoChestTopLeft { get; set; }
 
         [JsonProperty("Mido Chest Top Right")]
-        public string MidoChestTopRight { get; set; }
+        public OOTInputLocationItem MidoChestTopRight { get; set; }
 
         [JsonProperty("Mido Chest Bottom Left")]
-        public string MidoChestBottomLeft { get; set; }
+        public OOTInputLocationItem MidoChestBottomLeft { get; set; }
 
         [JsonProperty("Mido Chest Bottom Right")]
-        public string MidoChestBottomRight { get; set; }
+        public OOTInputLocationItem MidoChestBottomRight { get; set; }
 
         [JsonProperty("Kokiri Shop Item 1")]
         public OOTInputLocationItem KokiriShopItem1 { get; set; }
@@ -943,154 +941,154 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem KokiriShopItem8 { get; set; }
 
         [JsonProperty("Skull Kid")]
-        public string SkullKid { get; set; }
+        public OOTInputLocationItem SkullKid { get; set; }
 
         [JsonProperty("Ocarina Memory Game")]
-        public string OcarinaMemoryGame { get; set; }
+        public OOTInputLocationItem OcarinaMemoryGame { get; set; }
 
         [JsonProperty("Target in Woods")]
-        public string TargetInWoods { get; set; }
+        public OOTInputLocationItem TargetInWoods { get; set; }
 
         [JsonProperty("LW Deku Scrub Deku Stick Upgrade")]
         public OOTInputLocationItem LwDekuScrubDekuStickUpgrade { get; set; }
 
         [JsonProperty("GS Lost Woods Bean Patch Near Bridge")]
-        public string GsLostWoodsBeanPatchNearBridge { get; set; }
+        public OOTInputLocationItem GsLostWoodsBeanPatchNearBridge { get; set; }
 
         [JsonProperty("GS Lost Woods Above Stage")]
-        public string GsLostWoodsAboveStage { get; set; }
+        public OOTInputLocationItem GsLostWoodsAboveStage { get; set; }
 
         [JsonProperty("GS Lost Woods Bean Patch Near Stage")]
-        public string GsLostWoodsBeanPatchNearStage { get; set; }
+        public OOTInputLocationItem GsLostWoodsBeanPatchNearStage { get; set; }
 
         [JsonProperty("GS Sacred Forest Meadow")]
-        public string GsSacredForestMeadow { get; set; }
+        public OOTInputLocationItem GsSacredForestMeadow { get; set; }
 
         [JsonProperty("Gift from Saria")]
-        public string GiftFromSaria { get; set; }
+        public OOTInputLocationItem GiftFromSaria { get; set; }
 
         [JsonProperty("Ocarina of Time")]
-        public string OcarinaOfTime { get; set; }
+        public OOTInputLocationItem OcarinaOfTime { get; set; }
 
         [JsonProperty("Underwater Bottle")]
-        public string UnderwaterBottle { get; set; }
+        public OOTInputLocationItem UnderwaterBottle { get; set; }
 
         [JsonProperty("Lake Hylia Sun")]
-        public string LakeHyliaSun { get; set; }
+        public OOTInputLocationItem LakeHyliaSun { get; set; }
 
         [JsonProperty("Lake Hylia Freestanding PoH")]
-        public string LakeHyliaFreestandingPoH { get; set; }
+        public OOTInputLocationItem LakeHyliaFreestandingPoH { get; set; }
 
         [JsonProperty("GS Lake Hylia Bean Patch")]
-        public string GsLakeHyliaBeanPatch { get; set; }
+        public OOTInputLocationItem GsLakeHyliaBeanPatch { get; set; }
 
         [JsonProperty("GS Lake Hylia Lab Wall")]
-        public string GsLakeHyliaLabWall { get; set; }
+        public OOTInputLocationItem GsLakeHyliaLabWall { get; set; }
 
         [JsonProperty("GS Lake Hylia Small Island")]
-        public string GsLakeHyliaSmallIsland { get; set; }
+        public OOTInputLocationItem GsLakeHyliaSmallIsland { get; set; }
 
         [JsonProperty("GS Lake Hylia Giant Tree")]
-        public string GsLakeHyliaGiantTree { get; set; }
+        public OOTInputLocationItem GsLakeHyliaGiantTree { get; set; }
 
         [JsonProperty("Diving in the Lab")]
-        public string DivingInTheLab { get; set; }
+        public OOTInputLocationItem DivingInTheLab { get; set; }
 
         [JsonProperty("GS Lab Underwater Crate")]
-        public string GsLabUnderwaterCrate { get; set; }
+        public OOTInputLocationItem GsLabUnderwaterCrate { get; set; }
 
         [JsonProperty("Child Fishing")]
-        public string ChildFishing { get; set; }
+        public OOTInputLocationItem ChildFishing { get; set; }
 
         [JsonProperty("Adult Fishing")]
-        public string AdultFishing { get; set; }
+        public OOTInputLocationItem AdultFishing { get; set; }
 
         [JsonProperty("GS Gerudo Valley Small Bridge")]
-        public string GsGerudoValleySmallBridge { get; set; }
+        public OOTInputLocationItem GsGerudoValleySmallBridge { get; set; }
 
         [JsonProperty("Gerudo Valley Waterfall Freestanding PoH")]
-        public string GerudoValleyWaterfallFreestandingPoH { get; set; }
+        public OOTInputLocationItem GerudoValleyWaterfallFreestandingPoH { get; set; }
 
         [JsonProperty("GS Gerudo Valley Bean Patch")]
-        public string GsGerudoValleyBeanPatch { get; set; }
+        public OOTInputLocationItem GsGerudoValleyBeanPatch { get; set; }
 
         [JsonProperty("Gerudo Valley Crate Freestanding PoH")]
-        public string GerudoValleyCrateFreestandingPoH { get; set; }
+        public OOTInputLocationItem GerudoValleyCrateFreestandingPoH { get; set; }
 
         [JsonProperty("Gerudo Valley Hammer Rocks Chest")]
-        public string GerudoValleyHammerRocksChest { get; set; }
+        public OOTInputLocationItem GerudoValleyHammerRocksChest { get; set; }
 
         [JsonProperty("GS Gerudo Valley Behind Tent")]
-        public string GsGerudoValleyBehindTent { get; set; }
+        public OOTInputLocationItem GsGerudoValleyBehindTent { get; set; }
 
         [JsonProperty("GS Gerudo Valley Pillar")]
         public OOTInputLocationItem GsGerudoValleyPillar { get; set; }
 
         [JsonProperty("Gerudo Fortress Rooftop Chest")]
-        public string GerudoFortressRooftopChest { get; set; }
+        public OOTInputLocationItem GerudoFortressRooftopChest { get; set; }
 
         [JsonProperty("Horseback Archery 1000 Points")]
-        public string HorsebackArchery1000Points { get; set; }
+        public OOTInputLocationItem HorsebackArchery1000Points { get; set; }
 
         [JsonProperty("Horseback Archery 1500 Points")]
-        public string HorsebackArchery1500Points { get; set; }
+        public OOTInputLocationItem HorsebackArchery1500Points { get; set; }
 
         [JsonProperty("Gerudo Fortress North F1 Carpenter")]
-        public string GerudoFortressNorthF1Carpenter { get; set; }
+        public OOTInputLocationItem GerudoFortressNorthF1Carpenter { get; set; }
 
         [JsonProperty("Gerudo Fortress Membership Card")]
-        public string GerudoFortressMembershipCard { get; set; }
+        public OOTInputLocationItem GerudoFortressMembershipCard { get; set; }
 
         [JsonProperty("GS Gerudo Fortress Archery Range")]
-        public string GsGerudoFortressArcheryRange { get; set; }
+        public OOTInputLocationItem GsGerudoFortressArcheryRange { get; set; }
 
         [JsonProperty("GS Gerudo Fortress Top Floor")]
-        public string GsGerudoFortressTopFloor { get; set; }
+        public OOTInputLocationItem GsGerudoFortressTopFloor { get; set; }
 
         [JsonProperty("Haunted Wasteland Structure Chest")]
-        public string HauntedWastelandStructureChest { get; set; }
+        public OOTInputLocationItem HauntedWastelandStructureChest { get; set; }
 
         [JsonProperty("GS Wasteland Ruins")]
-        public string GsWastelandRuins { get; set; }
+        public OOTInputLocationItem GsWastelandRuins { get; set; }
 
         [JsonProperty("Colossus Freestanding PoH")]
-        public string ColossusFreestandingPoH { get; set; }
+        public OOTInputLocationItem ColossusFreestandingPoH { get; set; }
 
         [JsonProperty("GS Desert Colossus Bean Patch")]
-        public string GsDesertColossusBeanPatch { get; set; }
+        public OOTInputLocationItem GsDesertColossusBeanPatch { get; set; }
 
         [JsonProperty("GS Desert Colossus Tree")]
-        public string GsDesertColossusTree { get; set; }
+        public OOTInputLocationItem GsDesertColossusTree { get; set; }
 
         [JsonProperty("GS Desert Colossus Hill")]
-        public string GsDesertColossusHill { get; set; }
+        public OOTInputLocationItem GsDesertColossusHill { get; set; }
 
         [JsonProperty("Desert Colossus Fairy Reward")]
-        public string DesertColossusFairyReward { get; set; }
+        public OOTInputLocationItem DesertColossusFairyReward { get; set; }
 
         [JsonProperty("Zelda")]
-        public string Zelda { get; set; }
+        public OOTInputLocationItem Zelda { get; set; }
 
         [JsonProperty("Malon Egg")]
-        public string MalonEgg { get; set; }
+        public OOTInputLocationItem MalonEgg { get; set; }
 
         [JsonProperty("GS Hyrule Castle Tree")]
-        public string GsHyruleCastleTree { get; set; }
+        public OOTInputLocationItem GsHyruleCastleTree { get; set; }
 
         [JsonProperty("Hyrule Castle Fairy Reward")]
-        public string HyruleCastleFairyReward { get; set; }
+        public OOTInputLocationItem HyruleCastleFairyReward { get; set; }
 
         [JsonProperty("GS Outside Ganon's Castle")]
-        public string GsOutsideGanonSCastle { get; set; }
+        public OOTInputLocationItem GsOutsideGanonSCastle { get; set; }
 
         [JsonProperty("Ganons Castle Fairy Reward")]
-        public string GanonsCastleFairyReward { get; set; }
+        public OOTInputLocationItem GanonsCastleFairyReward { get; set; }
 
         [JsonProperty("10 Big Poes")]
-        public string The10BigPoes { get; set; }
+        public OOTInputLocationItem The10BigPoes { get; set; }
 
         [JsonProperty("GS Castle Market Guard House")]
-        public string GsCastleMarketGuardHouse { get; set; }
+        public OOTInputLocationItem GsCastleMarketGuardHouse { get; set; }
 
         [JsonProperty("Castle Town Bazaar Item 1")]
         public OOTInputLocationItem CastleTownBazaarItem1 { get; set; }
@@ -1117,13 +1115,13 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem CastleTownBazaarItem8 { get; set; }
 
         [JsonProperty("Child Shooting Gallery")]
-        public string ChildShootingGallery { get; set; }
+        public OOTInputLocationItem ChildShootingGallery { get; set; }
 
         [JsonProperty("Bombchu Bowling Bomb Bag")]
-        public string BombchuBowlingBombBag { get; set; }
+        public OOTInputLocationItem BombchuBowlingBombBag { get; set; }
 
         [JsonProperty("Bombchu Bowling Piece of Heart")]
-        public string BombchuBowlingPieceOfHeart { get; set; }
+        public OOTInputLocationItem BombchuBowlingPieceOfHeart { get; set; }
 
         [JsonProperty("Castle Town Potion Shop Item 1")]
         public OOTInputLocationItem CastleTownPotionShopItem1 { get; set; }
@@ -1150,7 +1148,7 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem CastleTownPotionShopItem8 { get; set; }
 
         [JsonProperty("Treasure Chest Game")]
-        public string TreasureChestGame { get; set; }
+        public OOTInputLocationItem TreasureChestGame { get; set; }
 
         [JsonProperty("Bombchu Shop Item 1")]
         public OOTInputLocationItem BombchuShopItem1 { get; set; }
@@ -1177,55 +1175,55 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem BombchuShopItem8 { get; set; }
 
         [JsonProperty("Dog Lady")]
-        public string DogLady { get; set; }
+        public OOTInputLocationItem DogLady { get; set; }
 
         [JsonProperty("Anju as Adult")]
-        public string AnjuAsAdult { get; set; }
+        public OOTInputLocationItem AnjuAsAdult { get; set; }
 
         [JsonProperty("Anjus Chickens")]
-        public string AnjusChickens { get; set; }
+        public OOTInputLocationItem AnjusChickens { get; set; }
 
         [JsonProperty("GS Kakariko House Under Construction")]
-        public string GsKakarikoHouseUnderConstruction { get; set; }
+        public OOTInputLocationItem GsKakarikoHouseUnderConstruction { get; set; }
 
         [JsonProperty("GS Kakariko Skulltula House")]
-        public string GsKakarikoSkulltulaHouse { get; set; }
+        public OOTInputLocationItem GsKakarikoSkulltulaHouse { get; set; }
 
         [JsonProperty("GS Kakariko Guard's House")]
-        public string GsKakarikoGuardSHouse { get; set; }
+        public OOTInputLocationItem GsKakarikoGuardSHouse { get; set; }
 
         [JsonProperty("GS Kakariko Tree")]
-        public string GsKakarikoTree { get; set; }
+        public OOTInputLocationItem GsKakarikoTree { get; set; }
 
         [JsonProperty("GS Kakariko Watchtower")]
-        public string GsKakarikoWatchtower { get; set; }
+        public OOTInputLocationItem GsKakarikoWatchtower { get; set; }
 
         [JsonProperty("GS Kakariko Above Impa's House")]
-        public string GsKakarikoAboveImpaSHouse { get; set; }
+        public OOTInputLocationItem GsKakarikoAboveImpaSHouse { get; set; }
 
         [JsonProperty("Man on Roof")]
-        public string ManOnRoof { get; set; }
+        public OOTInputLocationItem ManOnRoof { get; set; }
 
         [JsonProperty("10 Gold Skulltula Reward")]
-        public string The10GoldSkulltulaReward { get; set; }
+        public OOTInputLocationItem The10GoldSkulltulaReward { get; set; }
 
         [JsonProperty("20 Gold Skulltula Reward")]
-        public string The20GoldSkulltulaReward { get; set; }
+        public OOTInputLocationItem The20GoldSkulltulaReward { get; set; }
 
         [JsonProperty("30 Gold Skulltula Reward")]
-        public string The30GoldSkulltulaReward { get; set; }
+        public OOTInputLocationItem The30GoldSkulltulaReward { get; set; }
 
         [JsonProperty("40 Gold Skulltula Reward")]
-        public string The40GoldSkulltulaReward { get; set; }
+        public OOTInputLocationItem The40GoldSkulltulaReward { get; set; }
 
         [JsonProperty("50 Gold Skulltula Reward")]
-        public string The50GoldSkulltulaReward { get; set; }
+        public OOTInputLocationItem The50GoldSkulltulaReward { get; set; }
 
         [JsonProperty("Impa House Freestanding PoH")]
-        public string ImpaHouseFreestandingPoH { get; set; }
+        public OOTInputLocationItem ImpaHouseFreestandingPoH { get; set; }
 
         [JsonProperty("Windmill Freestanding PoH")]
-        public string WindmillFreestandingPoH { get; set; }
+        public OOTInputLocationItem WindmillFreestandingPoH { get; set; }
 
         [JsonProperty("Kakariko Bazaar Item 1")]
         public OOTInputLocationItem KakarikoBazaarItem1 { get; set; }
@@ -1252,7 +1250,7 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem KakarikoBazaarItem8 { get; set; }
 
         [JsonProperty("Adult Shooting Gallery")]
-        public string AdultShootingGallery { get; set; }
+        public OOTInputLocationItem AdultShootingGallery { get; set; }
 
         [JsonProperty("Kakariko Potion Shop Item 1")]
         public OOTInputLocationItem KakarikoPotionShopItem1 { get; set; }
@@ -1279,79 +1277,79 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem KakarikoPotionShopItem8 { get; set; }
 
         [JsonProperty("Graveyard Freestanding PoH")]
-        public string GraveyardFreestandingPoH { get; set; }
+        public OOTInputLocationItem GraveyardFreestandingPoH { get; set; }
 
         [JsonProperty("Gravedigging Tour")]
-        public string GravediggingTour { get; set; }
+        public OOTInputLocationItem GravediggingTour { get; set; }
 
         [JsonProperty("GS Graveyard Wall")]
-        public string GsGraveyardWall { get; set; }
+        public OOTInputLocationItem GsGraveyardWall { get; set; }
 
         [JsonProperty("GS Graveyard Bean Patch")]
-        public string GsGraveyardBeanPatch { get; set; }
+        public OOTInputLocationItem GsGraveyardBeanPatch { get; set; }
 
         [JsonProperty("Shield Grave Chest")]
-        public string ShieldGraveChest { get; set; }
+        public OOTInputLocationItem ShieldGraveChest { get; set; }
 
         [JsonProperty("Heart Piece Grave Chest")]
-        public string HeartPieceGraveChest { get; set; }
+        public OOTInputLocationItem HeartPieceGraveChest { get; set; }
 
         [JsonProperty("Composer Grave Chest")]
-        public string ComposerGraveChest { get; set; }
+        public OOTInputLocationItem ComposerGraveChest { get; set; }
 
         [JsonProperty("Hookshot Chest")]
-        public string HookshotChest { get; set; }
+        public OOTInputLocationItem HookshotChest { get; set; }
 
         [JsonProperty("Dampe Race Freestanding PoH")]
-        public string DampeRaceFreestandingPoH { get; set; }
+        public OOTInputLocationItem DampeRaceFreestandingPoH { get; set; }
 
         [JsonProperty("Death Mountain Bombable Chest")]
-        public string DeathMountainBombableChest { get; set; }
+        public OOTInputLocationItem DeathMountainBombableChest { get; set; }
 
         [JsonProperty("DM Trail Freestanding PoH")]
-        public string DmTrailFreestandingPoH { get; set; }
+        public OOTInputLocationItem DmTrailFreestandingPoH { get; set; }
 
         [JsonProperty("GS Mountain Trail Bean Patch")]
-        public string GsMountainTrailBeanPatch { get; set; }
+        public OOTInputLocationItem GsMountainTrailBeanPatch { get; set; }
 
         [JsonProperty("GS Mountain Trail Bomb Alcove")]
-        public string GsMountainTrailBombAlcove { get; set; }
+        public OOTInputLocationItem GsMountainTrailBombAlcove { get; set; }
 
         [JsonProperty("GS Mountain Trail Above Dodongo's Cavern")]
-        public string GsMountainTrailAboveDodongoSCavern { get; set; }
+        public OOTInputLocationItem GsMountainTrailAboveDodongoSCavern { get; set; }
 
         [JsonProperty("Biggoron")]
-        public string Biggoron { get; set; }
+        public OOTInputLocationItem Biggoron { get; set; }
 
         [JsonProperty("GS Mountain Trail Path to Crater")]
-        public string GsMountainTrailPathToCrater { get; set; }
+        public OOTInputLocationItem GsMountainTrailPathToCrater { get; set; }
 
         [JsonProperty("Goron City Leftmost Maze Chest")]
-        public string GoronCityLeftmostMazeChest { get; set; }
+        public OOTInputLocationItem GoronCityLeftmostMazeChest { get; set; }
 
         [JsonProperty("Goron City Left Maze Chest")]
-        public string GoronCityLeftMazeChest { get; set; }
+        public OOTInputLocationItem GoronCityLeftMazeChest { get; set; }
 
         [JsonProperty("Goron City Right Maze Chest")]
-        public string GoronCityRightMazeChest { get; set; }
+        public OOTInputLocationItem GoronCityRightMazeChest { get; set; }
 
         [JsonProperty("Goron City Pot Freestanding PoH")]
-        public string GoronCityPotFreestandingPoH { get; set; }
+        public OOTInputLocationItem GoronCityPotFreestandingPoH { get; set; }
 
         [JsonProperty("Rolling Goron as Child")]
-        public string RollingGoronAsChild { get; set; }
+        public OOTInputLocationItem RollingGoronAsChild { get; set; }
 
         [JsonProperty("Link the Goron")]
-        public string LinkTheGoron { get; set; }
+        public OOTInputLocationItem LinkTheGoron { get; set; }
 
         [JsonProperty("GS Goron City Boulder Maze")]
-        public string GsGoronCityBoulderMaze { get; set; }
+        public OOTInputLocationItem GsGoronCityBoulderMaze { get; set; }
 
         [JsonProperty("GS Goron City Center Platform")]
-        public string GsGoronCityCenterPlatform { get; set; }
+        public OOTInputLocationItem GsGoronCityCenterPlatform { get; set; }
 
         [JsonProperty("Darunias Joy")]
-        public string DaruniasJoy { get; set; }
+        public OOTInputLocationItem DaruniasJoy { get; set; }
 
         [JsonProperty("Goron Shop Item 1")]
         public OOTInputLocationItem GoronShopItem1 { get; set; }
@@ -1378,76 +1376,76 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem GoronShopItem8 { get; set; }
 
         [JsonProperty("DM Crater Wall Freestanding PoH")]
-        public string DmCraterWallFreestandingPoH { get; set; }
+        public OOTInputLocationItem DmCraterWallFreestandingPoH { get; set; }
 
         [JsonProperty("GS Death Mountain Crater Crate")]
-        public string GsDeathMountainCraterCrate { get; set; }
+        public OOTInputLocationItem GsDeathMountainCraterCrate { get; set; }
 
         [JsonProperty("DM Crater Volcano Freestanding PoH")]
-        public string DmCraterVolcanoFreestandingPoH { get; set; }
+        public OOTInputLocationItem DmCraterVolcanoFreestandingPoH { get; set; }
 
         [JsonProperty("GS Mountain Crater Bean Patch")]
-        public string GsMountainCraterBeanPatch { get; set; }
+        public OOTInputLocationItem GsMountainCraterBeanPatch { get; set; }
 
         [JsonProperty("Crater Fairy Reward")]
-        public string CraterFairyReward { get; set; }
+        public OOTInputLocationItem CraterFairyReward { get; set; }
 
         [JsonProperty("Mountain Summit Fairy Reward")]
-        public string MountainSummitFairyReward { get; set; }
+        public OOTInputLocationItem MountainSummitFairyReward { get; set; }
 
         [JsonProperty("GS Zora River Tree")]
-        public string GsZoraRiverTree { get; set; }
+        public OOTInputLocationItem GsZoraRiverTree { get; set; }
 
         [JsonProperty("Magic Bean Salesman")]
-        public string MagicBeanSalesman { get; set; }
+        public OOTInputLocationItem MagicBeanSalesman { get; set; }
 
         [JsonProperty("Frog Ocarina Game")]
-        public string FrogOcarinaGame { get; set; }
+        public OOTInputLocationItem FrogOcarinaGame { get; set; }
 
         [JsonProperty("Frogs in the Rain")]
-        public string FrogsInTheRain { get; set; }
+        public OOTInputLocationItem FrogsInTheRain { get; set; }
 
         [JsonProperty("Zora River Lower Freestanding PoH")]
-        public string ZoraRiverLowerFreestandingPoH { get; set; }
+        public OOTInputLocationItem ZoraRiverLowerFreestandingPoH { get; set; }
 
         [JsonProperty("Zora River Upper Freestanding PoH")]
-        public string ZoraRiverUpperFreestandingPoH { get; set; }
+        public OOTInputLocationItem ZoraRiverUpperFreestandingPoH { get; set; }
 
         [JsonProperty("GS Zora River Ladder")]
-        public string GsZoraRiverLadder { get; set; }
+        public OOTInputLocationItem GsZoraRiverLadder { get; set; }
 
         [JsonProperty("GS Zora River Near Raised Grottos")]
-        public string GsZoraRiverNearRaisedGrottos { get; set; }
+        public OOTInputLocationItem GsZoraRiverNearRaisedGrottos { get; set; }
 
         [JsonProperty("GS Zora River Above Bridge")]
-        public string GsZoraRiverAboveBridge { get; set; }
+        public OOTInputLocationItem GsZoraRiverAboveBridge { get; set; }
 
         [JsonProperty("Diving Minigame")]
-        public string DivingMinigame { get; set; }
+        public OOTInputLocationItem DivingMinigame { get; set; }
 
         [JsonProperty("Zoras Domain Torch Run")]
-        public string ZorasDomainTorchRun { get; set; }
+        public OOTInputLocationItem ZorasDomainTorchRun { get; set; }
 
         [JsonProperty("King Zora Thawed")]
-        public string KingZoraThawed { get; set; }
+        public OOTInputLocationItem KingZoraThawed { get; set; }
 
         [JsonProperty("GS Zora's Domain Frozen Waterfall")]
-        public string GsZoraSDomainFrozenWaterfall { get; set; }
+        public OOTInputLocationItem GsZoraSDomainFrozenWaterfall { get; set; }
 
         [JsonProperty("Zoras Fountain Iceberg Freestanding PoH")]
-        public string ZorasFountainIcebergFreestandingPoH { get; set; }
+        public OOTInputLocationItem ZorasFountainIcebergFreestandingPoH { get; set; }
 
         [JsonProperty("Zoras Fountain Bottom Freestanding PoH")]
-        public string ZorasFountainBottomFreestandingPoH { get; set; }
+        public OOTInputLocationItem ZorasFountainBottomFreestandingPoH { get; set; }
 
         [JsonProperty("GS Zora's Fountain Tree")]
-        public string GsZoraSFountainTree { get; set; }
+        public OOTInputLocationItem GsZoraSFountainTree { get; set; }
 
         [JsonProperty("GS Zora's Fountain Above the Log")]
-        public string GsZoraSFountainAboveTheLog { get; set; }
+        public OOTInputLocationItem GsZoraSFountainAboveTheLog { get; set; }
 
         [JsonProperty("GS Zora's Fountain Hidden Cave")]
-        public string GsZoraSFountainHiddenCave { get; set; }
+        public OOTInputLocationItem GsZoraSFountainHiddenCave { get; set; }
 
         [JsonProperty("Zora Shop Item 1")]
         public OOTInputLocationItem ZoraShopItem1 { get; set; }
@@ -1474,670 +1472,670 @@ namespace RandomizerAPI.Models.GameModels
         public OOTInputLocationItem ZoraShopItem8 { get; set; }
 
         [JsonProperty("Zoras Fountain Fairy Reward")]
-        public string ZorasFountainFairyReward { get; set; }
+        public OOTInputLocationItem ZorasFountainFairyReward { get; set; }
 
         [JsonProperty("GS Lon Lon Ranch Tree")]
-        public string GsLonLonRanchTree { get; set; }
+        public OOTInputLocationItem GsLonLonRanchTree { get; set; }
 
         [JsonProperty("GS Lon Lon Ranch Rain Shed")]
-        public string GsLonLonRanchRainShed { get; set; }
+        public OOTInputLocationItem GsLonLonRanchRainShed { get; set; }
 
         [JsonProperty("GS Lon Lon Ranch House Window")]
-        public string GsLonLonRanchHouseWindow { get; set; }
+        public OOTInputLocationItem GsLonLonRanchHouseWindow { get; set; }
 
         [JsonProperty("GS Lon Lon Ranch Back Wall")]
-        public string GsLonLonRanchBackWall { get; set; }
+        public OOTInputLocationItem GsLonLonRanchBackWall { get; set; }
 
         [JsonProperty("Talons Chickens")]
-        public string TalonsChickens { get; set; }
+        public OOTInputLocationItem TalonsChickens { get; set; }
 
         [JsonProperty("Lon Lon Tower Freestanding PoH")]
-        public string LonLonTowerFreestandingPoH { get; set; }
+        public OOTInputLocationItem LonLonTowerFreestandingPoH { get; set; }
 
         [JsonProperty("Ganons Tower Boss Key Chest")]
-        public string GanonsTowerBossKeyChest { get; set; }
+        public OOTInputLocationItem GanonsTowerBossKeyChest { get; set; }
 
         [JsonProperty("Kokiri Forest Storms Grotto Chest")]
-        public string KokiriForestStormsGrottoChest { get; set; }
+        public OOTInputLocationItem KokiriForestStormsGrottoChest { get; set; }
 
         [JsonProperty("Lost Woods Generic Grotto Chest")]
-        public string LostWoodsGenericGrottoChest { get; set; }
+        public OOTInputLocationItem LostWoodsGenericGrottoChest { get; set; }
 
         [JsonProperty("Deku Theater Skull Mask")]
-        public string DekuTheaterSkullMask { get; set; }
+        public OOTInputLocationItem DekuTheaterSkullMask { get; set; }
 
         [JsonProperty("Deku Theater Mask of Truth")]
-        public string DekuTheaterMaskOfTruth { get; set; }
+        public OOTInputLocationItem DekuTheaterMaskOfTruth { get; set; }
 
         [JsonProperty("LW Grotto Deku Scrub Deku Nut Upgrade")]
         public OOTInputLocationItem LwGrottoDekuScrubDekuNutUpgrade { get; set; }
 
         [JsonProperty("Wolfos Grotto Chest")]
-        public string WolfosGrottoChest { get; set; }
+        public OOTInputLocationItem WolfosGrottoChest { get; set; }
 
         [JsonProperty("Remote Southern Grotto Chest")]
-        public string RemoteSouthernGrottoChest { get; set; }
+        public OOTInputLocationItem RemoteSouthernGrottoChest { get; set; }
 
         [JsonProperty("Field Near Lake Outside Fence Grotto Chest")]
-        public string FieldNearLakeOutsideFenceGrottoChest { get; set; }
+        public OOTInputLocationItem FieldNearLakeOutsideFenceGrottoChest { get; set; }
 
         [JsonProperty("HF Grotto Deku Scrub Piece of Heart")]
         public OOTInputLocationItem HfGrottoDekuScrubPieceOfHeart { get; set; }
 
         [JsonProperty("GS Hyrule Field Near Gerudo Valley")]
-        public string GsHyruleFieldNearGerudoValley { get; set; }
+        public OOTInputLocationItem GsHyruleFieldNearGerudoValley { get; set; }
 
         [JsonProperty("Field West Castle Town Grotto Chest")]
-        public string FieldWestCastleTownGrottoChest { get; set; }
+        public OOTInputLocationItem FieldWestCastleTownGrottoChest { get; set; }
 
         [JsonProperty("GS Hyrule Field near Kakariko")]
-        public string GsHyruleFieldNearKakariko { get; set; }
+        public OOTInputLocationItem GsHyruleFieldNearKakariko { get; set; }
 
         [JsonProperty("Tektite Grotto Freestanding PoH")]
-        public string TektiteGrottoFreestandingPoH { get; set; }
+        public OOTInputLocationItem TektiteGrottoFreestandingPoH { get; set; }
 
         [JsonProperty("GS Hyrule Castle Grotto")]
-        public string GsHyruleCastleGrotto { get; set; }
+        public OOTInputLocationItem GsHyruleCastleGrotto { get; set; }
 
         [JsonProperty("Redead Grotto Chest")]
-        public string RedeadGrottoChest { get; set; }
+        public OOTInputLocationItem RedeadGrottoChest { get; set; }
 
         [JsonProperty("Kakariko Back Grotto Chest")]
-        public string KakarikoBackGrottoChest { get; set; }
+        public OOTInputLocationItem KakarikoBackGrottoChest { get; set; }
 
         [JsonProperty("Mountain Storms Grotto Chest")]
-        public string MountainStormsGrottoChest { get; set; }
+        public OOTInputLocationItem MountainStormsGrottoChest { get; set; }
 
         [JsonProperty("Top of Crater Grotto Chest")]
-        public string TopOfCraterGrottoChest { get; set; }
+        public OOTInputLocationItem TopOfCraterGrottoChest { get; set; }
 
         [JsonProperty("Zora River Plateau Open Grotto Chest")]
-        public string ZoraRiverPlateauOpenGrottoChest { get; set; }
+        public OOTInputLocationItem ZoraRiverPlateauOpenGrottoChest { get; set; }
 
         [JsonProperty("Deku Tree Lobby Chest")]
-        public string DekuTreeLobbyChest { get; set; }
+        public OOTInputLocationItem DekuTreeLobbyChest { get; set; }
 
         [JsonProperty("Deku Tree Compass Chest")]
-        public string DekuTreeCompassChest { get; set; }
+        public OOTInputLocationItem DekuTreeCompassChest { get; set; }
 
         [JsonProperty("Deku Tree Compass Room Side Chest")]
-        public string DekuTreeCompassRoomSideChest { get; set; }
+        public OOTInputLocationItem DekuTreeCompassRoomSideChest { get; set; }
 
         [JsonProperty("Deku Tree Basement Chest")]
-        public string DekuTreeBasementChest { get; set; }
+        public OOTInputLocationItem DekuTreeBasementChest { get; set; }
 
         [JsonProperty("GS Deku Tree Compass Room")]
-        public string GsDekuTreeCompassRoom { get; set; }
+        public OOTInputLocationItem GsDekuTreeCompassRoom { get; set; }
 
         [JsonProperty("GS Deku Tree Basement Vines")]
-        public string GsDekuTreeBasementVines { get; set; }
+        public OOTInputLocationItem GsDekuTreeBasementVines { get; set; }
 
         [JsonProperty("GS Deku Tree Basement Gate")]
-        public string GsDekuTreeBasementGate { get; set; }
+        public OOTInputLocationItem GsDekuTreeBasementGate { get; set; }
 
         [JsonProperty("GS Deku Tree Basement Back Room")]
-        public string GsDekuTreeBasementBackRoom { get; set; }
+        public OOTInputLocationItem GsDekuTreeBasementBackRoom { get; set; }
 
         [JsonProperty("Deku Tree Slingshot Chest")]
-        public string DekuTreeSlingshotChest { get; set; }
+        public OOTInputLocationItem DekuTreeSlingshotChest { get; set; }
 
         [JsonProperty("Deku Tree Slingshot Room Side Chest")]
-        public string DekuTreeSlingshotRoomSideChest { get; set; }
+        public OOTInputLocationItem DekuTreeSlingshotRoomSideChest { get; set; }
 
         [JsonProperty("Queen Gohma Heart")]
-        public string QueenGohmaHeart { get; set; }
+        public OOTInputLocationItem QueenGohmaHeart { get; set; }
 
         [JsonProperty("Dodongos Cavern Map Chest")]
-        public string DodongosCavernMapChest { get; set; }
+        public OOTInputLocationItem DodongosCavernMapChest { get; set; }
 
         [JsonProperty("Dodongos Cavern Compass Chest")]
-        public string DodongosCavernCompassChest { get; set; }
+        public OOTInputLocationItem DodongosCavernCompassChest { get; set; }
 
         [JsonProperty("GS Dodongo's Cavern East Side Room")]
-        public string GsDodongoSCavernEastSideRoom { get; set; }
+        public OOTInputLocationItem GsDodongoSCavernEastSideRoom { get; set; }
 
         [JsonProperty("GS Dodongo's Cavern Scarecrow")]
-        public string GsDodongoSCavernScarecrow { get; set; }
+        public OOTInputLocationItem GsDodongoSCavernScarecrow { get; set; }
 
         [JsonProperty("Dodongos Cavern Bomb Flower Platform")]
-        public string DodongosCavernBombFlowerPlatform { get; set; }
+        public OOTInputLocationItem DodongosCavernBombFlowerPlatform { get; set; }
 
         [JsonProperty("GS Dodongo's Cavern Vines Above Stairs")]
-        public string GsDodongoSCavernVinesAboveStairs { get; set; }
+        public OOTInputLocationItem GsDodongoSCavernVinesAboveStairs { get; set; }
 
         [JsonProperty("Dodongos Cavern Bomb Bag Chest")]
-        public string DodongosCavernBombBagChest { get; set; }
+        public OOTInputLocationItem DodongosCavernBombBagChest { get; set; }
 
         [JsonProperty("Dodongos Cavern End of Bridge Chest")]
-        public string DodongosCavernEndOfBridgeChest { get; set; }
+        public OOTInputLocationItem DodongosCavernEndOfBridgeChest { get; set; }
 
         [JsonProperty("GS Dodongo's Cavern Alcove Above Stairs")]
-        public string GsDodongoSCavernAlcoveAboveStairs { get; set; }
+        public OOTInputLocationItem GsDodongoSCavernAlcoveAboveStairs { get; set; }
 
         [JsonProperty("Chest Above King Dodongo")]
-        public string ChestAboveKingDodongo { get; set; }
+        public OOTInputLocationItem ChestAboveKingDodongo { get; set; }
 
         [JsonProperty("King Dodongo Heart")]
-        public string KingDodongoHeart { get; set; }
+        public OOTInputLocationItem KingDodongoHeart { get; set; }
 
         [JsonProperty("GS Dodongo's Cavern Back Room")]
-        public string GsDodongoSCavernBackRoom { get; set; }
+        public OOTInputLocationItem GsDodongoSCavernBackRoom { get; set; }
 
         [JsonProperty("Boomerang Chest")]
-        public string BoomerangChest { get; set; }
+        public OOTInputLocationItem BoomerangChest { get; set; }
 
         [JsonProperty("GS Jabu Jabu Water Switch Room")]
-        public string GsJabuJabuWaterSwitchRoom { get; set; }
+        public OOTInputLocationItem GsJabuJabuWaterSwitchRoom { get; set; }
 
         [JsonProperty("GS Jabu Jabu Lobby Basement Lower")]
-        public string GsJabuJabuLobbyBasementLower { get; set; }
+        public OOTInputLocationItem GsJabuJabuLobbyBasementLower { get; set; }
 
         [JsonProperty("GS Jabu Jabu Lobby Basement Upper")]
-        public string GsJabuJabuLobbyBasementUpper { get; set; }
+        public OOTInputLocationItem GsJabuJabuLobbyBasementUpper { get; set; }
 
         [JsonProperty("Jabu Jabus Belly Map Chest")]
-        public string JabuJabusBellyMapChest { get; set; }
+        public OOTInputLocationItem JabuJabusBellyMapChest { get; set; }
 
         [JsonProperty("Jabu Jabus Belly Compass Chest")]
-        public string JabuJabusBellyCompassChest { get; set; }
+        public OOTInputLocationItem JabuJabusBellyCompassChest { get; set; }
 
         [JsonProperty("Barinade Heart")]
-        public string BarinadeHeart { get; set; }
+        public OOTInputLocationItem BarinadeHeart { get; set; }
 
         [JsonProperty("GS Jabu Jabu Near Boss")]
-        public string GsJabuJabuNearBoss { get; set; }
+        public OOTInputLocationItem GsJabuJabuNearBoss { get; set; }
 
         [JsonProperty("Forest Temple First Chest")]
-        public string ForestTempleFirstChest { get; set; }
+        public OOTInputLocationItem ForestTempleFirstChest { get; set; }
 
         [JsonProperty("Forest Temple Chest Behind Lobby")]
-        public string ForestTempleChestBehindLobby { get; set; }
+        public OOTInputLocationItem ForestTempleChestBehindLobby { get; set; }
 
         [JsonProperty("GS Forest Temple First Room")]
-        public string GsForestTempleFirstRoom { get; set; }
+        public OOTInputLocationItem GsForestTempleFirstRoom { get; set; }
 
         [JsonProperty("GS Forest Temple Lobby")]
-        public string GsForestTempleLobby { get; set; }
+        public OOTInputLocationItem GsForestTempleLobby { get; set; }
 
         [JsonProperty("GS Forest Temple Outdoor West")]
-        public string GsForestTempleOutdoorWest { get; set; }
+        public OOTInputLocationItem GsForestTempleOutdoorWest { get; set; }
 
         [JsonProperty("Forest Temple Outside Hookshot Chest")]
-        public string ForestTempleOutsideHookshotChest { get; set; }
+        public OOTInputLocationItem ForestTempleOutsideHookshotChest { get; set; }
 
         [JsonProperty("GS Forest Temple Outdoor East")]
-        public string GsForestTempleOutdoorEast { get; set; }
+        public OOTInputLocationItem GsForestTempleOutdoorEast { get; set; }
 
         [JsonProperty("Forest Temple Well Chest")]
-        public string ForestTempleWellChest { get; set; }
+        public OOTInputLocationItem ForestTempleWellChest { get; set; }
 
         [JsonProperty("Forest Temple Map Chest")]
-        public string ForestTempleMapChest { get; set; }
+        public OOTInputLocationItem ForestTempleMapChest { get; set; }
 
         [JsonProperty("Forest Temple Falling Room Chest")]
-        public string ForestTempleFallingRoomChest { get; set; }
+        public OOTInputLocationItem ForestTempleFallingRoomChest { get; set; }
 
         [JsonProperty("Forest Temple Block Push Chest")]
-        public string ForestTempleBlockPushChest { get; set; }
+        public OOTInputLocationItem ForestTempleBlockPushChest { get; set; }
 
         [JsonProperty("Forest Temple Boss Key Chest")]
-        public string ForestTempleBossKeyChest { get; set; }
+        public OOTInputLocationItem ForestTempleBossKeyChest { get; set; }
 
         [JsonProperty("Forest Temple Floormaster Chest")]
-        public string ForestTempleFloormasterChest { get; set; }
+        public OOTInputLocationItem ForestTempleFloormasterChest { get; set; }
 
         [JsonProperty("Forest Temple Bow Chest")]
-        public string ForestTempleBowChest { get; set; }
+        public OOTInputLocationItem ForestTempleBowChest { get; set; }
 
         [JsonProperty("Forest Temple Red Poe Chest")]
-        public string ForestTempleRedPoeChest { get; set; }
+        public OOTInputLocationItem ForestTempleRedPoeChest { get; set; }
 
         [JsonProperty("Forest Temple Blue Poe Chest")]
-        public string ForestTempleBluePoeChest { get; set; }
+        public OOTInputLocationItem ForestTempleBluePoeChest { get; set; }
 
         [JsonProperty("Forest Temple Near Boss Chest")]
-        public string ForestTempleNearBossChest { get; set; }
+        public OOTInputLocationItem ForestTempleNearBossChest { get; set; }
 
         [JsonProperty("Phantom Ganon Heart")]
-        public string PhantomGanonHeart { get; set; }
+        public OOTInputLocationItem PhantomGanonHeart { get; set; }
 
         [JsonProperty("GS Forest Temple Basement")]
-        public string GsForestTempleBasement { get; set; }
+        public OOTInputLocationItem GsForestTempleBasement { get; set; }
 
         [JsonProperty("Bottom of the Well Front Left Hidden Wall")]
-        public string BottomOfTheWellFrontLeftHiddenWall { get; set; }
+        public OOTInputLocationItem BottomOfTheWellFrontLeftHiddenWall { get; set; }
 
         [JsonProperty("Bottom of the Well Front Center Bombable")]
-        public string BottomOfTheWellFrontCenterBombable { get; set; }
+        public OOTInputLocationItem BottomOfTheWellFrontCenterBombable { get; set; }
 
         [JsonProperty("Bottom of the Well Right Bottom Hidden Wall")]
-        public string BottomOfTheWellRightBottomHiddenWall { get; set; }
+        public OOTInputLocationItem BottomOfTheWellRightBottomHiddenWall { get; set; }
 
         [JsonProperty("Bottom of the Well Center Large Chest")]
-        public string BottomOfTheWellCenterLargeChest { get; set; }
+        public OOTInputLocationItem BottomOfTheWellCenterLargeChest { get; set; }
 
         [JsonProperty("Bottom of the Well Center Small Chest")]
-        public string BottomOfTheWellCenterSmallChest { get; set; }
+        public OOTInputLocationItem BottomOfTheWellCenterSmallChest { get; set; }
 
         [JsonProperty("Bottom of the Well Back Left Bombable")]
-        public string BottomOfTheWellBackLeftBombable { get; set; }
+        public OOTInputLocationItem BottomOfTheWellBackLeftBombable { get; set; }
 
         [JsonProperty("Bottom of the Well Freestanding Key")]
-        public string BottomOfTheWellFreestandingKey { get; set; }
+        public OOTInputLocationItem BottomOfTheWellFreestandingKey { get; set; }
 
         [JsonProperty("Bottom of the Well Defeat Boss")]
-        public string BottomOfTheWellDefeatBoss { get; set; }
+        public OOTInputLocationItem BottomOfTheWellDefeatBoss { get; set; }
 
         [JsonProperty("Bottom of the Well Invisible Chest")]
-        public string BottomOfTheWellInvisibleChest { get; set; }
+        public OOTInputLocationItem BottomOfTheWellInvisibleChest { get; set; }
 
         [JsonProperty("Bottom of the Well Underwater Front Chest")]
-        public string BottomOfTheWellUnderwaterFrontChest { get; set; }
+        public OOTInputLocationItem BottomOfTheWellUnderwaterFrontChest { get; set; }
 
         [JsonProperty("Bottom of the Well Underwater Left Chest")]
-        public string BottomOfTheWellUnderwaterLeftChest { get; set; }
+        public OOTInputLocationItem BottomOfTheWellUnderwaterLeftChest { get; set; }
 
         [JsonProperty("Bottom of the Well Basement Chest")]
-        public string BottomOfTheWellBasementChest { get; set; }
+        public OOTInputLocationItem BottomOfTheWellBasementChest { get; set; }
 
         [JsonProperty("Bottom of the Well Locked Pits")]
-        public string BottomOfTheWellLockedPits { get; set; }
+        public OOTInputLocationItem BottomOfTheWellLockedPits { get; set; }
 
         [JsonProperty("Bottom of the Well Behind Right Grate")]
-        public string BottomOfTheWellBehindRightGrate { get; set; }
+        public OOTInputLocationItem BottomOfTheWellBehindRightGrate { get; set; }
 
         [JsonProperty("GS Well West Inner Room")]
-        public string GsWellWestInnerRoom { get; set; }
+        public OOTInputLocationItem GsWellWestInnerRoom { get; set; }
 
         [JsonProperty("GS Well East Inner Room")]
-        public string GsWellEastInnerRoom { get; set; }
+        public OOTInputLocationItem GsWellEastInnerRoom { get; set; }
 
         [JsonProperty("GS Well Like Like Cage")]
-        public string GsWellLikeLikeCage { get; set; }
+        public OOTInputLocationItem GsWellLikeLikeCage { get; set; }
 
         [JsonProperty("Fire Temple Chest Near Boss")]
-        public string FireTempleChestNearBoss { get; set; }
+        public OOTInputLocationItem FireTempleChestNearBoss { get; set; }
 
         [JsonProperty("Fire Temple Fire Dancer Chest")]
-        public string FireTempleFireDancerChest { get; set; }
+        public OOTInputLocationItem FireTempleFireDancerChest { get; set; }
 
         [JsonProperty("Fire Temple Boss Key Chest")]
-        public string FireTempleBossKeyChest { get; set; }
+        public OOTInputLocationItem FireTempleBossKeyChest { get; set; }
 
         [JsonProperty("Volvagia Heart")]
-        public string VolvagiaHeart { get; set; }
+        public OOTInputLocationItem VolvagiaHeart { get; set; }
 
         [JsonProperty("GS Fire Temple Basement")]
-        public string GsFireTempleBasement { get; set; }
+        public OOTInputLocationItem GsFireTempleBasement { get; set; }
 
         [JsonProperty("Fire Temple Big Lava Room Open Chest")]
-        public string FireTempleBigLavaRoomOpenChest { get; set; }
+        public OOTInputLocationItem FireTempleBigLavaRoomOpenChest { get; set; }
 
         [JsonProperty("Fire Temple Big Lava Room Bombable Chest")]
-        public string FireTempleBigLavaRoomBombableChest { get; set; }
+        public OOTInputLocationItem FireTempleBigLavaRoomBombableChest { get; set; }
 
         [JsonProperty("GS Fire Temple Song of Time Room")]
-        public string GsFireTempleSongOfTimeRoom { get; set; }
+        public OOTInputLocationItem GsFireTempleSongOfTimeRoom { get; set; }
 
         [JsonProperty("Fire Temple Boulder Maze Lower Chest")]
-        public string FireTempleBoulderMazeLowerChest { get; set; }
+        public OOTInputLocationItem FireTempleBoulderMazeLowerChest { get; set; }
 
         [JsonProperty("Fire Temple Boulder Maze Upper Chest")]
-        public string FireTempleBoulderMazeUpperChest { get; set; }
+        public OOTInputLocationItem FireTempleBoulderMazeUpperChest { get; set; }
 
         [JsonProperty("Fire Temple Boulder Maze Side Room")]
-        public string FireTempleBoulderMazeSideRoom { get; set; }
+        public OOTInputLocationItem FireTempleBoulderMazeSideRoom { get; set; }
 
         [JsonProperty("Fire Temple Boulder Maze Bombable Pit")]
-        public string FireTempleBoulderMazeBombablePit { get; set; }
+        public OOTInputLocationItem FireTempleBoulderMazeBombablePit { get; set; }
 
         [JsonProperty("Fire Temple Scarecrow Chest")]
-        public string FireTempleScarecrowChest { get; set; }
+        public OOTInputLocationItem FireTempleScarecrowChest { get; set; }
 
         [JsonProperty("Fire Temple Map Chest")]
-        public string FireTempleMapChest { get; set; }
+        public OOTInputLocationItem FireTempleMapChest { get; set; }
 
         [JsonProperty("Fire Temple Compass Chest")]
-        public string FireTempleCompassChest { get; set; }
+        public OOTInputLocationItem FireTempleCompassChest { get; set; }
 
         [JsonProperty("GS Fire Temple Unmarked Bomb Wall")]
-        public string GsFireTempleUnmarkedBombWall { get; set; }
+        public OOTInputLocationItem GsFireTempleUnmarkedBombWall { get; set; }
 
         [JsonProperty("GS Fire Temple East Tower Climb")]
-        public string GsFireTempleEastTowerClimb { get; set; }
+        public OOTInputLocationItem GsFireTempleEastTowerClimb { get; set; }
 
         [JsonProperty("GS Fire Temple East Tower Top")]
-        public string GsFireTempleEastTowerTop { get; set; }
+        public OOTInputLocationItem GsFireTempleEastTowerTop { get; set; }
 
         [JsonProperty("Fire Temple Highest Goron Chest")]
-        public string FireTempleHighestGoronChest { get; set; }
+        public OOTInputLocationItem FireTempleHighestGoronChest { get; set; }
 
         [JsonProperty("Fire Temple Megaton Hammer Chest")]
-        public string FireTempleMegatonHammerChest { get; set; }
+        public OOTInputLocationItem FireTempleMegatonHammerChest { get; set; }
 
         [JsonProperty("Ice Cavern Map Chest")]
-        public string IceCavernMapChest { get; set; }
+        public OOTInputLocationItem IceCavernMapChest { get; set; }
 
         [JsonProperty("Ice Cavern Compass Chest")]
-        public string IceCavernCompassChest { get; set; }
+        public OOTInputLocationItem IceCavernCompassChest { get; set; }
 
         [JsonProperty("Ice Cavern Iron Boots Chest")]
-        public string IceCavernIronBootsChest { get; set; }
+        public OOTInputLocationItem IceCavernIronBootsChest { get; set; }
 
         [JsonProperty("Ice Cavern Freestanding PoH")]
-        public string IceCavernFreestandingPoH { get; set; }
+        public OOTInputLocationItem IceCavernFreestandingPoH { get; set; }
 
         [JsonProperty("GS Ice Cavern Spinning Scythe Room")]
-        public string GsIceCavernSpinningScytheRoom { get; set; }
+        public OOTInputLocationItem GsIceCavernSpinningScytheRoom { get; set; }
 
         [JsonProperty("GS Ice Cavern Heart Piece Room")]
-        public string GsIceCavernHeartPieceRoom { get; set; }
+        public OOTInputLocationItem GsIceCavernHeartPieceRoom { get; set; }
 
         [JsonProperty("GS Ice Cavern Push Block Room")]
-        public string GsIceCavernPushBlockRoom { get; set; }
+        public OOTInputLocationItem GsIceCavernPushBlockRoom { get; set; }
 
         [JsonProperty("Morpha Heart")]
-        public string MorphaHeart { get; set; }
+        public OOTInputLocationItem MorphaHeart { get; set; }
 
         [JsonProperty("Water Temple Map Chest")]
-        public string WaterTempleMapChest { get; set; }
+        public OOTInputLocationItem WaterTempleMapChest { get; set; }
 
         [JsonProperty("Water Temple Compass Chest")]
-        public string WaterTempleCompassChest { get; set; }
+        public OOTInputLocationItem WaterTempleCompassChest { get; set; }
 
         [JsonProperty("Water Temple Torches Chest")]
-        public string WaterTempleTorchesChest { get; set; }
+        public OOTInputLocationItem WaterTempleTorchesChest { get; set; }
 
         [JsonProperty("Water Temple Central Bow Target Chest")]
-        public string WaterTempleCentralBowTargetChest { get; set; }
+        public OOTInputLocationItem WaterTempleCentralBowTargetChest { get; set; }
 
         [JsonProperty("GS Water Temple South Basement")]
-        public string GsWaterTempleSouthBasement { get; set; }
+        public OOTInputLocationItem GsWaterTempleSouthBasement { get; set; }
 
         [JsonProperty("Water Temple Boss Key Chest")]
-        public string WaterTempleBossKeyChest { get; set; }
+        public OOTInputLocationItem WaterTempleBossKeyChest { get; set; }
 
         [JsonProperty("GS Water Temple Near Boss Key Chest")]
-        public string GsWaterTempleNearBossKeyChest { get; set; }
+        public OOTInputLocationItem GsWaterTempleNearBossKeyChest { get; set; }
 
         [JsonProperty("Water Temple Cracked Wall Chest")]
-        public string WaterTempleCrackedWallChest { get; set; }
+        public OOTInputLocationItem WaterTempleCrackedWallChest { get; set; }
 
         [JsonProperty("Water Temple Dragon Chest")]
-        public string WaterTempleDragonChest { get; set; }
+        public OOTInputLocationItem WaterTempleDragonChest { get; set; }
 
         [JsonProperty("Water Temple Central Pillar Chest")]
-        public string WaterTempleCentralPillarChest { get; set; }
+        public OOTInputLocationItem WaterTempleCentralPillarChest { get; set; }
 
         [JsonProperty("GS Water Temple Central Room")]
-        public string GsWaterTempleCentralRoom { get; set; }
+        public OOTInputLocationItem GsWaterTempleCentralRoom { get; set; }
 
         [JsonProperty("Water Temple Dark Link Chest")]
-        public string WaterTempleDarkLinkChest { get; set; }
+        public OOTInputLocationItem WaterTempleDarkLinkChest { get; set; }
 
         [JsonProperty("Water Temple River Chest")]
-        public string WaterTempleRiverChest { get; set; }
+        public OOTInputLocationItem WaterTempleRiverChest { get; set; }
 
         [JsonProperty("GS Water Temple Serpent River")]
-        public string GsWaterTempleSerpentRiver { get; set; }
+        public OOTInputLocationItem GsWaterTempleSerpentRiver { get; set; }
 
         [JsonProperty("GS Water Temple Falling Platform Room")]
-        public string GsWaterTempleFallingPlatformRoom { get; set; }
+        public OOTInputLocationItem GsWaterTempleFallingPlatformRoom { get; set; }
 
         [JsonProperty("Shadow Temple Map Chest")]
-        public string ShadowTempleMapChest { get; set; }
+        public OOTInputLocationItem ShadowTempleMapChest { get; set; }
 
         [JsonProperty("Shadow Temple Hover Boots Chest")]
-        public string ShadowTempleHoverBootsChest { get; set; }
+        public OOTInputLocationItem ShadowTempleHoverBootsChest { get; set; }
 
         [JsonProperty("Shadow Temple Compass Chest")]
-        public string ShadowTempleCompassChest { get; set; }
+        public OOTInputLocationItem ShadowTempleCompassChest { get; set; }
 
         [JsonProperty("Shadow Temple Early Silver Rupee Chest")]
-        public string ShadowTempleEarlySilverRupeeChest { get; set; }
+        public OOTInputLocationItem ShadowTempleEarlySilverRupeeChest { get; set; }
 
         [JsonProperty("Shadow Temple Invisible Blades Visible Chest")]
-        public string ShadowTempleInvisibleBladesVisibleChest { get; set; }
+        public OOTInputLocationItem ShadowTempleInvisibleBladesVisibleChest { get; set; }
 
         [JsonProperty("Shadow Temple Invisible Blades Invisible Chest")]
-        public string ShadowTempleInvisibleBladesInvisibleChest { get; set; }
+        public OOTInputLocationItem ShadowTempleInvisibleBladesInvisibleChest { get; set; }
 
         [JsonProperty("Shadow Temple Falling Spikes Lower Chest")]
-        public string ShadowTempleFallingSpikesLowerChest { get; set; }
+        public OOTInputLocationItem ShadowTempleFallingSpikesLowerChest { get; set; }
 
         [JsonProperty("Shadow Temple Falling Spikes Upper Chest")]
-        public string ShadowTempleFallingSpikesUpperChest { get; set; }
+        public OOTInputLocationItem ShadowTempleFallingSpikesUpperChest { get; set; }
 
         [JsonProperty("Shadow Temple Falling Spikes Switch Chest")]
-        public string ShadowTempleFallingSpikesSwitchChest { get; set; }
+        public OOTInputLocationItem ShadowTempleFallingSpikesSwitchChest { get; set; }
 
         [JsonProperty("Shadow Temple Invisible Spikes Chest")]
-        public string ShadowTempleInvisibleSpikesChest { get; set; }
+        public OOTInputLocationItem ShadowTempleInvisibleSpikesChest { get; set; }
 
         [JsonProperty("Shadow Temple Freestanding Key")]
-        public string ShadowTempleFreestandingKey { get; set; }
+        public OOTInputLocationItem ShadowTempleFreestandingKey { get; set; }
 
         [JsonProperty("GS Shadow Temple Like Like Room")]
-        public string GsShadowTempleLikeLikeRoom { get; set; }
+        public OOTInputLocationItem GsShadowTempleLikeLikeRoom { get; set; }
 
         [JsonProperty("GS Shadow Temple Crusher Room")]
-        public string GsShadowTempleCrusherRoom { get; set; }
+        public OOTInputLocationItem GsShadowTempleCrusherRoom { get; set; }
 
         [JsonProperty("GS Shadow Temple Single Giant Pot")]
-        public string GsShadowTempleSingleGiantPot { get; set; }
+        public OOTInputLocationItem GsShadowTempleSingleGiantPot { get; set; }
 
         [JsonProperty("Shadow Temple Wind Hint Chest")]
-        public string ShadowTempleWindHintChest { get; set; }
+        public OOTInputLocationItem ShadowTempleWindHintChest { get; set; }
 
         [JsonProperty("Shadow Temple After Wind Enemy Chest")]
-        public string ShadowTempleAfterWindEnemyChest { get; set; }
+        public OOTInputLocationItem ShadowTempleAfterWindEnemyChest { get; set; }
 
         [JsonProperty("Shadow Temple After Wind Hidden Chest")]
-        public string ShadowTempleAfterWindHiddenChest { get; set; }
+        public OOTInputLocationItem ShadowTempleAfterWindHiddenChest { get; set; }
 
         [JsonProperty("GS Shadow Temple Near Ship")]
-        public string GsShadowTempleNearShip { get; set; }
+        public OOTInputLocationItem GsShadowTempleNearShip { get; set; }
 
         [JsonProperty("Shadow Temple Spike Walls Left Chest")]
-        public string ShadowTempleSpikeWallsLeftChest { get; set; }
+        public OOTInputLocationItem ShadowTempleSpikeWallsLeftChest { get; set; }
 
         [JsonProperty("Shadow Temple Boss Key Chest")]
-        public string ShadowTempleBossKeyChest { get; set; }
+        public OOTInputLocationItem ShadowTempleBossKeyChest { get; set; }
 
         [JsonProperty("Shadow Temple Hidden Floormaster Chest")]
-        public string ShadowTempleHiddenFloormasterChest { get; set; }
+        public OOTInputLocationItem ShadowTempleHiddenFloormasterChest { get; set; }
 
         [JsonProperty("Bongo Bongo Heart")]
-        public string BongoBongoHeart { get; set; }
+        public OOTInputLocationItem BongoBongoHeart { get; set; }
 
         [JsonProperty("GS Shadow Temple Triple Giant Pot")]
-        public string GsShadowTempleTripleGiantPot { get; set; }
+        public OOTInputLocationItem GsShadowTempleTripleGiantPot { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Lobby Left Chest")]
-        public string GerudoTrainingGroundsLobbyLeftChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsLobbyLeftChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Lobby Right Chest")]
-        public string GerudoTrainingGroundsLobbyRightChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsLobbyRightChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Stalfos Chest")]
-        public string GerudoTrainingGroundsStalfosChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsStalfosChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Beamos Chest")]
-        public string GerudoTrainingGroundsBeamosChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsBeamosChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Hidden Ceiling Chest")]
-        public string GerudoTrainingGroundsHiddenCeilingChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHiddenCeilingChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Maze Path First Chest")]
-        public string GerudoTrainingGroundsMazePathFirstChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsMazePathFirstChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Maze Path Second Chest")]
-        public string GerudoTrainingGroundsMazePathSecondChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsMazePathSecondChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Maze Path Third Chest")]
-        public string GerudoTrainingGroundsMazePathThirdChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsMazePathThirdChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Maze Path Final Chest")]
-        public string GerudoTrainingGroundsMazePathFinalChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsMazePathFinalChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Maze Right Central Chest")]
-        public string GerudoTrainingGroundsMazeRightCentralChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsMazeRightCentralChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Maze Right Side Chest")]
-        public string GerudoTrainingGroundsMazeRightSideChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsMazeRightSideChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Freestanding Key")]
-        public string GerudoTrainingGroundsFreestandingKey { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsFreestandingKey { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Underwater Silver Rupee Chest")]
-        public string GerudoTrainingGroundsUnderwaterSilverRupeeChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsUnderwaterSilverRupeeChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Hammer Room Clear Chest")]
-        public string GerudoTrainingGroundsHammerRoomClearChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHammerRoomClearChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Hammer Room Switch Chest")]
-        public string GerudoTrainingGroundsHammerRoomSwitchChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHammerRoomSwitchChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Eye Statue Chest")]
-        public string GerudoTrainingGroundsEyeStatueChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsEyeStatueChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Near Scarecrow Chest")]
-        public string GerudoTrainingGroundsNearScarecrowChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsNearScarecrowChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Before Heavy Block Chest")]
-        public string GerudoTrainingGroundsBeforeHeavyBlockChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsBeforeHeavyBlockChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Heavy Block First Chest")]
-        public string GerudoTrainingGroundsHeavyBlockFirstChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHeavyBlockFirstChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Heavy Block Second Chest")]
-        public string GerudoTrainingGroundsHeavyBlockSecondChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHeavyBlockSecondChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Heavy Block Third Chest")]
-        public string GerudoTrainingGroundsHeavyBlockThirdChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHeavyBlockThirdChest { get; set; }
 
         [JsonProperty("Gerudo Training Grounds Heavy Block Fourth Chest")]
-        public string GerudoTrainingGroundsHeavyBlockFourthChest { get; set; }
+        public OOTInputLocationItem GerudoTrainingGroundsHeavyBlockFourthChest { get; set; }
 
         [JsonProperty("Spirit Temple Child Left Chest")]
-        public string SpiritTempleChildLeftChest { get; set; }
+        public OOTInputLocationItem SpiritTempleChildLeftChest { get; set; }
 
         [JsonProperty("Spirit Temple Child Right Chest")]
-        public string SpiritTempleChildRightChest { get; set; }
+        public OOTInputLocationItem SpiritTempleChildRightChest { get; set; }
 
         [JsonProperty("GS Spirit Temple Metal Fence")]
-        public string GsSpiritTempleMetalFence { get; set; }
+        public OOTInputLocationItem GsSpiritTempleMetalFence { get; set; }
 
         [JsonProperty("Spirit Temple Child Climb East Chest")]
-        public string SpiritTempleChildClimbEastChest { get; set; }
+        public OOTInputLocationItem SpiritTempleChildClimbEastChest { get; set; }
 
         [JsonProperty("Spirit Temple Child Climb North Chest")]
-        public string SpiritTempleChildClimbNorthChest { get; set; }
+        public OOTInputLocationItem SpiritTempleChildClimbNorthChest { get; set; }
 
         [JsonProperty("GS Spirit Temple Bomb for Light Room")]
-        public string GsSpiritTempleBombForLightRoom { get; set; }
+        public OOTInputLocationItem GsSpiritTempleBombForLightRoom { get; set; }
 
         [JsonProperty("Spirit Temple Compass Chest")]
-        public string SpiritTempleCompassChest { get; set; }
+        public OOTInputLocationItem SpiritTempleCompassChest { get; set; }
 
         [JsonProperty("Spirit Temple Early Adult Right Chest")]
-        public string SpiritTempleEarlyAdultRightChest { get; set; }
+        public OOTInputLocationItem SpiritTempleEarlyAdultRightChest { get; set; }
 
         [JsonProperty("Spirit Temple First Mirror Right Chest")]
-        public string SpiritTempleFirstMirrorRightChest { get; set; }
+        public OOTInputLocationItem SpiritTempleFirstMirrorRightChest { get; set; }
 
         [JsonProperty("Spirit Temple First Mirror Left Chest")]
-        public string SpiritTempleFirstMirrorLeftChest { get; set; }
+        public OOTInputLocationItem SpiritTempleFirstMirrorLeftChest { get; set; }
 
         [JsonProperty("GS Spirit Temple Boulder Room")]
-        public string GsSpiritTempleBoulderRoom { get; set; }
+        public OOTInputLocationItem GsSpiritTempleBoulderRoom { get; set; }
 
         [JsonProperty("Spirit Temple Map Chest")]
-        public string SpiritTempleMapChest { get; set; }
+        public OOTInputLocationItem SpiritTempleMapChest { get; set; }
 
         [JsonProperty("Spirit Temple Sun Block Room Chest")]
-        public string SpiritTempleSunBlockRoomChest { get; set; }
+        public OOTInputLocationItem SpiritTempleSunBlockRoomChest { get; set; }
 
         [JsonProperty("Spirit Temple Statue Hand Chest")]
-        public string SpiritTempleStatueHandChest { get; set; }
+        public OOTInputLocationItem SpiritTempleStatueHandChest { get; set; }
 
         [JsonProperty("Spirit Temple NE Main Room Chest")]
-        public string SpiritTempleNeMainRoomChest { get; set; }
+        public OOTInputLocationItem SpiritTempleNeMainRoomChest { get; set; }
 
         [JsonProperty("GS Spirit Temple Hall to West Iron Knuckle")]
-        public string GsSpiritTempleHallToWestIronKnuckle { get; set; }
+        public OOTInputLocationItem GsSpiritTempleHallToWestIronKnuckle { get; set; }
 
         [JsonProperty("GS Spirit Temple Lobby")]
-        public string GsSpiritTempleLobby { get; set; }
+        public OOTInputLocationItem GsSpiritTempleLobby { get; set; }
 
         [JsonProperty("Silver Gauntlets Chest")]
-        public string SilverGauntletsChest { get; set; }
+        public OOTInputLocationItem SilverGauntletsChest { get; set; }
 
         [JsonProperty("Mirror Shield Chest")]
-        public string MirrorShieldChest { get; set; }
+        public OOTInputLocationItem MirrorShieldChest { get; set; }
 
         [JsonProperty("Spirit Temple Near Four Armos Chest")]
-        public string SpiritTempleNearFourArmosChest { get; set; }
+        public OOTInputLocationItem SpiritTempleNearFourArmosChest { get; set; }
 
         [JsonProperty("Spirit Temple Hallway Left Invisible Chest")]
-        public string SpiritTempleHallwayLeftInvisibleChest { get; set; }
+        public OOTInputLocationItem SpiritTempleHallwayLeftInvisibleChest { get; set; }
 
         [JsonProperty("Spirit Temple Hallway Right Invisible Chest")]
-        public string SpiritTempleHallwayRightInvisibleChest { get; set; }
+        public OOTInputLocationItem SpiritTempleHallwayRightInvisibleChest { get; set; }
 
         [JsonProperty("Spirit Temple Boss Key Chest")]
-        public string SpiritTempleBossKeyChest { get; set; }
+        public OOTInputLocationItem SpiritTempleBossKeyChest { get; set; }
 
         [JsonProperty("Spirit Temple Topmost Chest")]
-        public string SpiritTempleTopmostChest { get; set; }
+        public OOTInputLocationItem SpiritTempleTopmostChest { get; set; }
 
         [JsonProperty("Twinrova Heart")]
-        public string TwinrovaHeart { get; set; }
+        public OOTInputLocationItem TwinrovaHeart { get; set; }
 
         [JsonProperty("Ganons Castle Forest Trial Chest")]
-        public string GanonsCastleForestTrialChest { get; set; }
+        public OOTInputLocationItem GanonsCastleForestTrialChest { get; set; }
 
         [JsonProperty("Ganons Castle Water Trial Left Chest")]
-        public string GanonsCastleWaterTrialLeftChest { get; set; }
+        public OOTInputLocationItem GanonsCastleWaterTrialLeftChest { get; set; }
 
         [JsonProperty("Ganons Castle Water Trial Right Chest")]
-        public string GanonsCastleWaterTrialRightChest { get; set; }
+        public OOTInputLocationItem GanonsCastleWaterTrialRightChest { get; set; }
 
         [JsonProperty("Ganons Castle Shadow Trial First Chest")]
-        public string GanonsCastleShadowTrialFirstChest { get; set; }
+        public OOTInputLocationItem GanonsCastleShadowTrialFirstChest { get; set; }
 
         [JsonProperty("Ganons Castle Shadow Trial Second Chest")]
-        public string GanonsCastleShadowTrialSecondChest { get; set; }
+        public OOTInputLocationItem GanonsCastleShadowTrialSecondChest { get; set; }
 
         [JsonProperty("Ganons Castle Spirit Trial First Chest")]
-        public string GanonsCastleSpiritTrialFirstChest { get; set; }
+        public OOTInputLocationItem GanonsCastleSpiritTrialFirstChest { get; set; }
 
         [JsonProperty("Ganons Castle Spirit Trial Second Chest")]
-        public string GanonsCastleSpiritTrialSecondChest { get; set; }
+        public OOTInputLocationItem GanonsCastleSpiritTrialSecondChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial First Left Chest")]
-        public string GanonsCastleLightTrialFirstLeftChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialFirstLeftChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial Second Left Chest")]
-        public string GanonsCastleLightTrialSecondLeftChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialSecondLeftChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial Third Left Chest")]
-        public string GanonsCastleLightTrialThirdLeftChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialThirdLeftChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial First Right Chest")]
-        public string GanonsCastleLightTrialFirstRightChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialFirstRightChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial Second Right Chest")]
-        public string GanonsCastleLightTrialSecondRightChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialSecondRightChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial Third Right Chest")]
-        public string GanonsCastleLightTrialThirdRightChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialThirdRightChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial Invisible Enemies Chest")]
-        public string GanonsCastleLightTrialInvisibleEnemiesChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialInvisibleEnemiesChest { get; set; }
 
         [JsonProperty("Ganons Castle Light Trial Lullaby Chest")]
-        public string GanonsCastleLightTrialLullabyChest { get; set; }
+        public OOTInputLocationItem GanonsCastleLightTrialLullabyChest { get; set; }
     }
 
     public partial class RandomizedSettings
@@ -2507,14 +2505,75 @@ namespace RandomizerAPI.Models.GameModels
         public string[] Colors { get; set; }
     }
 
+
+    [JsonConverter(typeof(OOTInputLocationItemConverter))]
     public partial class OOTInputLocationItem
     {
         [JsonProperty("item")]
         public string Item { get; set; }
-
         [JsonProperty("price", NullValueHandling = NullValueHandling.Ignore)]
         public long Price { get; set; }
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
+    }
+
+    public class OOTInputLocationItemConverter : JsonConverter<OOTInputLocationItem>
+    {
+        public override OOTInputLocationItem ReadJson(JsonReader reader, Type objectType, OOTInputLocationItem existingValue, bool hasExistingValue, JsonSerializer serializer)
+        {
+            OOTInputLocationItem item = new OOTInputLocationItem();
+            if (reader.TokenType != JsonToken.Null)
+            {
+                if (reader.TokenType == JsonToken.StartObject)
+                {
+                    reader.Read(); //read the next line.
+                    while (reader.TokenType != JsonToken.EndObject)
+                    {
+                        if (reader.TokenType == JsonToken.PropertyName)
+                        {
+                            string propertyName = (string)new JValue(reader.Value);
+                            reader.Read();
+                            switch (propertyName)
+                            {
+                                case "item":
+                                    item.Item = (string)new JValue(reader.Value);
+                                    break;
+                                case "model":
+                                    item.Model = (string)new JValue(reader.Value);
+                                    break;
+                                case "price":
+                                    item.Price = (long)new JValue(reader.Value);
+                                    break;
+                                default:
+                                    Console.WriteLine("Default case");
+                                    Console.WriteLine(reader.TokenType.ToString());
+                                    break;
+                            }
+                            reader.Read();
+                        }
+                    }
+                }
+                else
+                {
+                    JValue jValue = new JValue(reader.Value);
+                    switch (reader.TokenType)
+                    {
+                        case JsonToken.String:
+                            item.Item = (string)jValue;
+                            break;
+                        default:
+                            Console.WriteLine("Default case");
+                            Console.WriteLine(reader.TokenType.ToString());
+                            break;
+                    }
+                }
+            }
+            return item;
+        }
+
+        public override void WriteJson(JsonWriter writer, OOTInputLocationItem value, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

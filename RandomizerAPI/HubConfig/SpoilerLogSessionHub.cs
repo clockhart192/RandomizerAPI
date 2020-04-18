@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using RandomizerAPI.Models.GameModels;
+using RandomizerAPI.Models.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +24,15 @@ namespace RandomizerAPI.HubConfig
             //await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the group {groupName}.");
         }
 
-        public async Task Send(object payload, string method, string groupName = "")
+        public async Task Send(OoTSpoilerLog log, string ID)
         {
-            //await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            var resp = new SaveSessionResponse()
+            {
+                ID = ID,
+                SpoilerLog = log
+            };
 
-            await Clients.Others.SendAsync(method, payload);
-
-            //await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
+            await Clients.Others.SendAsync("sendSpoilerData", resp);
         }
     }
 }

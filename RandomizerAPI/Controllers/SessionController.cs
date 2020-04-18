@@ -14,18 +14,12 @@ namespace RandomizerAPI.Controllers
     [ApiController]
     public class SessionController : Controller
     {
-        //private readonly IWebHostEnvironment _hostingEnvironment;
-        private readonly IHubContext<SpoilerLogSessionHub> _hub;
         private readonly IDataRepository<RandomizerSession> _dataRepository;
 
         public SessionController(
-            // IWebHostEnvironment hostingEnvironment, 
-            IHubContext<SpoilerLogSessionHub> hub,
             IDataRepository<RandomizerSession> dataRepository
             )
         {
-            //_hostingEnvironment = hostingEnvironment;
-            _hub = hub;
             _dataRepository = dataRepository;
         }
 
@@ -34,6 +28,13 @@ namespace RandomizerAPI.Controllers
 
         [HttpPost("[action]")]
         public ActionResult Pong() { return Json("ping!"); }
+
+        [HttpPost("[action]")]
+        public ActionResult GetAllSessions()
+        {
+            var all = _dataRepository.GetAll();
+            return Json(all);
+        }
 
         [HttpPost("[action]")]
         public ActionResult CreateSession(CreateSessionRequest request)
@@ -59,18 +60,17 @@ namespace RandomizerAPI.Controllers
         [HttpPost("[action]")]
         public ActionResult SaveSession(SaveSpoilerLogRequest request)
         {
-            var original = _dataRepository.Get(request.ID);
-            var updated = original;
-            updated.SpoilerLog = JsonConvert.SerializeObject(request.SpoilerLog);
-            _dataRepository.Update(original, updated);
-
             var resp = new SaveSessionResponse()
             {
                 ID = request.ID,
                 SpoilerLog = request.SpoilerLog
             };
 
-            _hub.Clients.All.SendAsync("sendSpoilerData", resp);
+            var original = _dataRepository.Get(request.ID);
+            var updated = original;
+            updated.SpoilerLog = JsonConvert.SerializeObject(request.SpoilerLog);
+            _dataRepository.Update(original, updated);
+
             return Json(resp);
         }
 
@@ -82,6 +82,24 @@ namespace RandomizerAPI.Controllers
             var RandomizerSession = new OoTRandomizerSession(session, request.SessionView);
 
             return Json(RandomizerSession);
+        }
+
+        [HttpPost("[action]")]
+        public ActionResult DeleteSession(DeleteSessionRequest request)
+        {
+            _dataRepository.Delete(request.Session);
+            var all = _dataRepository.GetAll();
+            return Json(all);
+        }
+
+        [HttpPost("[action]")]
+        public ActionResult UpdateSession(UpdateSessionRequest request)
+        {
+            var original = _dataRepository.Get(request.Session.ID);
+            _dataRepository.Update(original, request.Session);
+
+            var all = _dataRepository.GetAll();
+            return Json(all);
         }
     }
 }

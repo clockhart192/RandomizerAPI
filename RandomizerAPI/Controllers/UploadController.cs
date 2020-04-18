@@ -1,9 +1,7 @@
-﻿using System.IO;
-using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RandomizerAPI.Models.GameModels;
+using System.IO;
 
 namespace RandomizerAPI.Controllers
 {
@@ -12,13 +10,7 @@ namespace RandomizerAPI.Controllers
     [ApiController]
     public class UploadController : Controller
     {
-
-		private readonly IWebHostEnvironment _hostingEnvironment;
-
-		public UploadController(IWebHostEnvironment hostingEnvironment)
-		{
-			_hostingEnvironment = hostingEnvironment;
-		}
+		public UploadController(){}
 
 		[HttpGet("[action]")]
 		public ActionResult Ping() { return Json("pong!"); }
@@ -39,7 +31,7 @@ namespace RandomizerAPI.Controllers
 			}
 			catch (System.Exception ex)
 			{
-				return Json("Upload Failed: " + ex.Message);
+				return StatusCode(500);
 			}
 		}
 	}

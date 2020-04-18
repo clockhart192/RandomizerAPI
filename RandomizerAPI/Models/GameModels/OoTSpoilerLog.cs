@@ -138,10 +138,14 @@ namespace RandomizerAPI.Models.GameModels
                 locations.Add(location);
             }
 
-            return MapLocationsToItem(locations);
+            return MapLocationsToItem(locations);//Refactor now because you're getting weird nulls
         }
         private Item MapItem(OOTInputLocationItem inputItem, List<ItemLocation> locations = null)
         {
+            if(inputItem == null)
+            {
+                return null;
+            }
             var item = new Item
             {
                 Name = inputItem.Item,

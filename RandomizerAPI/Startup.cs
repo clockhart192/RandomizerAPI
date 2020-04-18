@@ -1,20 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using RandomizerAPI.HubConfig;
 using RandomizerAPI.Models;
-using RandomizerAPI.Models.Repository;
 using RandomizerAPI.Models.DataManager;
+using RandomizerAPI.Models.Repository;
+using System;
 
 namespace RandomizerAPI
 {
@@ -58,12 +53,15 @@ namespace RandomizerAPI
                 .AllowCredentials());
             });
             services.AddSignalR(hubOptions =>
-            { 
+            {
+                hubOptions.EnableDetailedErrors = true;
                 hubOptions.ClientTimeoutInterval = TimeSpan.FromMinutes(120);
                 hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(1);
+                hubOptions.MaximumReceiveMessageSize = Int64.MaxValue;
             }
                 ).AddJsonProtocol(options => {
                 options.PayloadSerializerOptions.PropertyNamingPolicy = null; });
+
 
             services.AddDbContext<RandomizerSessionContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:RandomizerDB"]));
             services.AddScoped<IDataRepository<RandomizerSession>, RandomizerManager>();
