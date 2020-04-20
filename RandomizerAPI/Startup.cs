@@ -47,10 +47,11 @@ namespace RandomizerAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
-                .WithOrigins("http://localhost:4200", "https://randomizerapi-dev.ilaena.net/","https://randomizerapi.ilaena.net/")
+                .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .AllowCredentials());
+                .AllowCredentials()
+                .WithOrigins("http://localhost:4200", "https://randomizer-dev.ilaena.net", "https://randomizerapi.ilaena.net"));
             });
             services.AddSignalR(hubOptions =>
             {

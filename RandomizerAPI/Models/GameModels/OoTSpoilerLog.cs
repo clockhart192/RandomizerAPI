@@ -35,44 +35,11 @@ namespace RandomizerAPI.Models.GameModels
             Locations = MasterLocations;
             FreeItem = MasterLocations.SingleOrDefault(location => location.ID == "LinksPocket").ItemAtLocation;
             MainItems = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.MainItem).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).ToList();
-
-            //Handle the bottles
-            var bottle = MainItems.SingleOrDefault(mainItem => mainItem.Name == "Bottle");
-            MainItems.Add(bottle);
-            MainItems.Add(bottle);
-            MainItems.Add(bottle);
+            MainItems.AddRange(AddAdditionalMainItems());
             MainItems = MainItems.OrderBy(l => l.Order).ToList();
 
             Equipment = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Equipment).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).ToList();
-            //Handle the Master Sword
-            var masterSword = new Item()
-            {
-                Name = "Master Sword",
-                ImageURL = $"Master Sword.ico",
-                Model = null,
-                Price = 0,
-                LocationNames = null,
-                HasMultipleLocations = false,
-                Upgrades = null,
-                ItemType = ItemType.Equipment,
-                Order = 21,
-                Revealed = true
-            };
-            var kokiriTunic = new Item()
-            {
-                Name = "Kokiri Tunic",
-                ImageURL = $"Kokiri Tunic.ico",
-                Model = null,
-                Price = 0,
-                LocationNames = null,
-                HasMultipleLocations = false,
-                Upgrades = null,
-                ItemType = ItemType.Equipment,
-                Order = 26,
-                Revealed = true
-            };
-            Equipment.Add(masterSword);
-            Equipment.Add(kokiriTunic);
+            Equipment.AddRange(AddAdditionalEquipmentItems());
             Equipment = Equipment.OrderBy(l => l.Order).ToList();
 
             Songs = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Song).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
@@ -138,11 +105,11 @@ namespace RandomizerAPI.Models.GameModels
                 locations.Add(location);
             }
 
-            return MapLocationsToItem(locations);//Refactor now because you're getting weird nulls
+            return MapLocationsToItem(locations);
         }
         private Item MapItem(OOTInputLocationItem inputItem, List<ItemLocation> locations = null)
         {
-            if(inputItem == null)
+            if (inputItem == null)
             {
                 return null;
             }
@@ -322,20 +289,24 @@ namespace RandomizerAPI.Models.GameModels
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Zora Tunic":
-                    item.Order = 27;
-                    item.ItemType = ItemType.Equipment;
-                    break;
-                case "Iron Boots":
                     item.Order = 28;
                     item.ItemType = ItemType.Equipment;
                     break;
-                case "Hover Boots":
+                case "Kokiri Boots":
                     item.Order = 29;
+                    item.ItemType = ItemType.Equipment;
+                    break;
+                case "Iron Boots":
+                    item.Order = 30;
+                    item.ItemType = ItemType.Equipment;
+                    break;
+                case "Hover Boots":
+                    item.Order = 31;
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Progressive Scale Upgrade":
                     item.Name = "Silver Scale";
-                    item.Order = 30;
+                    item.Order = 31;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -345,7 +316,7 @@ namespace RandomizerAPI.Models.GameModels
                 case "Progressive Strength Upgrade":
                     item.Name = "Goron Bracelet";
                     item.ImageURL = $"Golden Gauntlets.ico";
-                    item.Order = 31;
+                    item.Order = 32;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -355,7 +326,8 @@ namespace RandomizerAPI.Models.GameModels
                     break;
                 case "Progressive Wallet":
                     item.Name = "Wallet";
-                    item.Order = 32;
+                    item.Revealed = true;
+                    item.Order = 33;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -365,7 +337,7 @@ namespace RandomizerAPI.Models.GameModels
                     };
                     break;
                 case "Magic Meter":
-                    item.Order = 33;
+                    item.Order = 34;
                     item.ItemType = ItemType.Equipment;
                     item.Upgrades = new List<Upgrade>()
                     {
@@ -373,12 +345,12 @@ namespace RandomizerAPI.Models.GameModels
                     };
                     break;
                 case "Stone of Agony":
-                    item.Order = 34;
+                    item.Order = 35;
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Gerudo Membership Card":
                     item.Name = "Gerudo Card";
-                    item.Order = 35;
+                    item.Order = 36;
                     item.ItemType = ItemType.Equipment;
                     break;
                 case "Zeldas Lullaby":
@@ -473,16 +445,153 @@ namespace RandomizerAPI.Models.GameModels
         }
         private List<Location> MapLocationsToItem(List<Location> locations)
         {
-            List<Location> resp = locations;
+            List<Location> resp = locations.Where(l=> l.ItemAtLocation != null).ToList();
             foreach (var location in resp)
             {
-                var locationNames = locations.Where(l => l.ItemAtLocation.Name == location.ItemAtLocation.Name && l.ItemAtLocation.Name != "Gold Skulltula Token").Select(l => new ItemLocation() { ID = l.ID, ItemText = l.Name }).ToList();
+                var locationNames = locations.Where(l => l.ItemAtLocation != null && l.ItemAtLocation.Name == location.ItemAtLocation.Name && l.ItemAtLocation.Name != "Gold Skulltula Token").Select(l => new ItemLocation() { ID = l.ID, ItemText = l.Name }).ToList();
                 location.ItemAtLocation.LocationNames = locationNames;
                 location.ItemAtLocation.HasMultipleLocations = locationNames.Count > 1;
             }
             return resp;
         }
 
+        private List<Item> AddAdditionalMainItems()
+        {
+
+            var items = new List<Item>();
+            //Handle the bottles
+            var bottle = MainItems.SingleOrDefault(mainItem => mainItem.Name == "Bottle");
+            items.Add(bottle);
+            items.Add(bottle);
+            items.Add(bottle);
+
+            if (!RandomizedSettings.ShuffleOcarinas)
+            {
+                var item = new Item()
+                {
+                    Name = "Ocarina",
+                    ImageURL = $"Ocarina.ico",
+                    Model = null,
+                    Price = 0,
+                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
+                    HasMultipleLocations = true,
+                    Upgrades = new List<Upgrade>() {
+                        new Upgrade() { ID = 0, UpgradeText = "Ocarina of Time" }
+                    },
+                    ItemType = ItemType.MainItem,
+                    Order = 8,
+                    Revealed = false
+                };
+                //items.Add(item);
+            }
+
+            if (!RandomizedSettings.ShuffleBeans)
+            {
+                var item = new Item()
+                {
+                    Name = "Magic Bean Pack",
+                    ImageURL = $"Magic Bean Pack.ico",
+                    Model = null,
+                    Price = 0,
+                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
+                    HasMultipleLocations = true,
+                    Upgrades = null,
+                    ItemType = ItemType.MainItem,
+                    Order = 14,
+                    Revealed = false
+                };
+                items.Add(item);
+            }
+
+            return items;
+        }
+        private List<Item> AddAdditionalEquipmentItems()
+        {
+            var items = new List<Item>();
+            //Handle the Master Sword
+            var masterSword = new Item()
+            {
+                Name = "Master Sword",
+                ImageURL = $"Master Sword.ico",
+                Model = null,
+                Price = 0,
+                LocationNames = null,
+                HasMultipleLocations = false,
+                Upgrades = null,
+                ItemType = ItemType.Equipment,
+                Order = 21,
+                Revealed = true
+            };
+            var kokiriTunic = new Item()
+            {
+                Name = "Kokiri Tunic",
+                ImageURL = $"Kokiri Tunic.ico",
+                Model = null,
+                Price = 0,
+                LocationNames = null,
+                HasMultipleLocations = false,
+                Upgrades = null,
+                ItemType = ItemType.Equipment,
+                Order = 26,
+                Revealed = true
+            };
+            var kokiriBoots = new Item()
+            {
+                Name = "Kokiri Boots",
+                ImageURL = $"Kokiri Boots.ico",
+                Model = null,
+                Price = 0,
+                LocationNames = null,
+                HasMultipleLocations = false,
+                Upgrades = null,
+                ItemType = ItemType.Equipment,
+                Order = 28,
+                Revealed = true
+            };
+
+            if (!RandomizedSettings.ShuffleKokiriSword)
+            {
+                var item = new Item()
+                {
+                    Name = "Kokiri Sword",
+                    ImageURL = $"Kokiri Sword.ico",
+                    Model = null,
+                    Price = 0,
+                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
+                    HasMultipleLocations = false,
+                    Upgrades = null,
+                    ItemType = ItemType.Equipment,
+                    Order = 20,
+                    Revealed = false
+                };
+                items.Add(item);
+            }
+
+            if (!RandomizedSettings.ShuffleGerudoCard)
+            {
+                var item = new Item()
+                {
+                    Name = "Gerudo Card",
+                    ImageURL = $"Gerudo Membership Card.ico",
+                    Model = null,
+                    Price = 0,
+                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
+                    HasMultipleLocations = false,
+                    Upgrades = null,
+                    ItemType = ItemType.Equipment,
+                    Order = 36,
+                    Revealed = false
+                };
+                items.Add(item);
+            }
+
+
+            items.Add(masterSword);
+            items.Add(kokiriTunic);
+            items.Add(kokiriBoots);
+
+            return items;
+        }
     }
     public class Location
     {

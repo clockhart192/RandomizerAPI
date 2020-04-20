@@ -29,7 +29,7 @@ namespace RandomizerAPI.Controllers
 				}
 				return Json($"Upload Failed: No file found.");
 			}
-			catch (System.Exception ex)
+			catch
 			{
 				return StatusCode(500);
 			}

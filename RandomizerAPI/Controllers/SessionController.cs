@@ -7,6 +7,7 @@ using RandomizerAPI.Models.GameModels;
 using RandomizerAPI.Models.Repository;
 using RandomizerAPI.Models.RequestModels;
 using RandomizerAPI.Models.ResponseModels;
+using System;
 
 namespace RandomizerAPI.Controllers
 {
@@ -32,8 +33,16 @@ namespace RandomizerAPI.Controllers
         [HttpPost("[action]")]
         public ActionResult GetAllSessions()
         {
-            var all = _dataRepository.GetAll();
-            return Json(all);
+            try
+            {
+
+                var all = _dataRepository.GetAll();
+                return Json(all);
+            }
+            catch(Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
         [HttpPost("[action]")]
