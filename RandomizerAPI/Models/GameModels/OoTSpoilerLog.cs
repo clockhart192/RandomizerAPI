@@ -16,6 +16,91 @@ namespace RandomizerAPI.Models.GameModels
         public List<Item> Equipment { get; set; }
         public List<Item> Songs { get; set; }
         public List<Item> DungeonRewards { get; set; }
+        public CollectionCounter GoldSkulltulaCount { get; set; } = new CollectionCounter() { Label = "Gold Skulltula" };
+
+        private readonly List<string> _mainNames = new List<string>()
+            {
+                "Deku Stick Capacity",
+                "Deku Nut Capacity",
+                "Bomb Bag",
+                "Slingshot",
+                "Bow",
+                "Fire Arrows",
+                "Ice Arrows",
+                "Light Arrows",
+                "Ocarina",
+                "Bombchus (10)",
+                "Magic Bean Pack",
+                "Progressive Hookshot",
+                "Boomerang",
+                "Hammer",
+                "Lens of Truth",
+                "Dins Fire",
+                "Farores Wind",
+                "Nayrus Love"
+            };
+
+        private readonly List<string> _equipmentNames = new List<string>()
+            {
+                "Kokiri Sword",
+                "Master Sword",
+                "Biggoron Sword",
+                "Deku Shield",
+                "Hylian Shield",
+                "Mirror Shield",
+                "Kokiri Tunic",
+                "Goron Tunic",
+                "Zora Tunic",
+                "Kokiri Boots",
+                "Iron Boots",
+                "Hover Boots",
+                "Progressive Scale Upgrade",
+                "Progressive Strength Upgrade",
+                "Progressive Wallet",
+                "Magic Meter",
+                "Stone of Agony",
+                "Gerudo Membership Card"
+            };
+
+        private readonly List<string> _songNames = new List<string>()
+            {
+               "Zeldas Lullaby",
+               "Eponas Song",
+               "Sarias Song",
+               "Suns Song",
+               "Song of Time",
+               "Song of Storms",
+               "Minuet of Forest",
+               "Bolero of Fire",
+               "Serenade of Water",
+               "Nocturne of Shadow",
+               "Requiem of Spirit",
+               "Prelude of Light"
+            };
+
+        private readonly List<string> _dungeonRewardNames = new List<string>()
+            {
+               "Kokiri Emerald",
+               "Goron Ruby",
+               "Zora Sapphire",
+               "Forest Medallion",
+               "Fire Medallion",
+               "Water Medallion",
+               "Shadow Medallion",
+               "Spirit Medallion",
+               "Light Medallion"
+            };
+
+        private readonly List<string> _bottleNames = new List<string>()
+            {
+                "Bottle with Letter",
+                "Bottle with Big Poe",
+                "Bottle with Milk",
+                "Bottle with Blue Fire",
+                "Bottle with Fairy",
+                "Bottle with Red Potion",
+                "Empty Bottle"
+            };
 
         private void Initialize(InputOoTSpoilerLog inputLog)
         {
@@ -34,17 +119,11 @@ namespace RandomizerAPI.Models.GameModels
 
             Locations = MasterLocations;
             FreeItem = MasterLocations.SingleOrDefault(location => location.ID == "LinksPocket").ItemAtLocation;
-            MainItems = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.MainItem).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).ToList();
-            MainItems.AddRange(AddAdditionalMainItems());
-            MainItems = MainItems.OrderBy(l => l.Order).ToList();
 
-            Equipment = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Equipment).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).ToList();
-            Equipment.AddRange(AddAdditionalEquipmentItems());
-            Equipment = Equipment.OrderBy(l => l.Order).ToList();
-
-            Songs = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.Song).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
-            DungeonRewards = MasterLocations.Where(location => location.ItemAtLocation.ItemType == ItemType.SpiritualStone || location.ItemAtLocation.ItemType == ItemType.Medallion).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).OrderBy(l => l.Order).ToList();
-
+            MainItems = MapItems(_mainNames, HandleBottles()).OrderBy(l => l.Order).ToList();
+            Equipment = MapItems(_equipmentNames).OrderBy(l => l.Order).ToList();
+            Songs = MapItems(_songNames).OrderBy(l => l.Order).ToList();
+            DungeonRewards = MapItems(_dungeonRewardNames).OrderBy(l => l.Order).ToList();
         }
 
         public OoTSpoilerLog() { }
@@ -86,6 +165,7 @@ namespace RandomizerAPI.Models.GameModels
                 if (property.PropertyType == typeof(string))
                 {
                     var inputItem = new OOTInputLocationItem() { Item = (string)property.GetValue(inputLocations, null) };
+
                     item = MapItem(inputItem);
                 }
                 else if (property.PropertyType == typeof(OOTInputLocationItem))
@@ -237,19 +317,19 @@ namespace RandomizerAPI.Models.GameModels
                     item.ItemType = ItemType.MainItem;
                     break;
                 case "Bottle with Letter":
-                    item.Name = "Bottle";
+                    item.Name = "Bottle with Letter";
                     item.ImageURL = $"{item.Name}.ico";
                     item.Order = 17;
                     item.ItemType = ItemType.MainItem;
                     break;
                 case "Bottle with Big Poe":
-                    item.Name = "Bottle";
+                    item.Name = "Bottle with Big Poe";
                     item.ImageURL = $"{item.Name}.ico";
                     item.Order = 18;
                     item.ItemType = ItemType.MainItem;
                     break;
                 case "Bottle with Milk":
-                    item.Name = "Bottle";
+                    item.Name = "Bottle with Milk";
                     item.ImageURL = $"{item.Name}.ico";
                     item.Order = 19;
                     item.ItemType = ItemType.MainItem;
@@ -445,7 +525,7 @@ namespace RandomizerAPI.Models.GameModels
         }
         private List<Location> MapLocationsToItem(List<Location> locations)
         {
-            List<Location> resp = locations.Where(l=> l.ItemAtLocation != null).ToList();
+            List<Location> resp = locations.Where(l => l.ItemAtLocation != null).ToList();
             foreach (var location in resp)
             {
                 var locationNames = locations.Where(l => l.ItemAtLocation != null && l.ItemAtLocation.Name == location.ItemAtLocation.Name && l.ItemAtLocation.Name != "Gold Skulltula Token").Select(l => new ItemLocation() { ID = l.ID, ItemText = l.Name }).ToList();
@@ -455,143 +535,60 @@ namespace RandomizerAPI.Models.GameModels
             return resp;
         }
 
-        private List<Item> AddAdditionalMainItems()
+        private List<Item> MapItems(List<string> Names, List<Item> OddItemsToAdd = null)
         {
-
             var items = new List<Item>();
-            //Handle the bottles
-            var bottle = MainItems.SingleOrDefault(mainItem => mainItem.Name == "Bottle");
-            items.Add(bottle);
-            items.Add(bottle);
-            items.Add(bottle);
 
-            if (!RandomizedSettings.ShuffleOcarinas)
+            foreach (var name in Names)
             {
-                var item = new Item()
+                var i = MapItem(new OOTInputLocationItem() { Item = name, Model = null });
+                var item = Locations.Where(l => l.ItemAtLocation.Name == i.Name).GroupBy(l => l.ItemAtLocation.Name).Select(l => l.Last().ItemAtLocation).SingleOrDefault();
+                if (item == null)
                 {
-                    Name = "Ocarina",
-                    ImageURL = $"Ocarina.ico",
-                    Model = null,
-                    Price = 0,
-                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
-                    HasMultipleLocations = true,
-                    Upgrades = new List<Upgrade>() {
-                        new Upgrade() { ID = 0, UpgradeText = "Ocarina of Time" }
-                    },
-                    ItemType = ItemType.MainItem,
-                    Order = 8,
-                    Revealed = false
-                };
-                //items.Add(item);
+                    i.LocationNames = new List<ItemLocation>() { new ItemLocation() { ID = "0", ItemText = "Vanilla" } };
+                    items.Add(i);
+                }
+                else
+                {
+                    items.Add(item);
+                }
             }
 
-            if (!RandomizedSettings.ShuffleBeans)
+
+            if (OddItemsToAdd != null)
             {
-                var item = new Item()
-                {
-                    Name = "Magic Bean Pack",
-                    ImageURL = $"Magic Bean Pack.ico",
-                    Model = null,
-                    Price = 0,
-                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
-                    HasMultipleLocations = true,
-                    Upgrades = null,
-                    ItemType = ItemType.MainItem,
-                    Order = 14,
-                    Revealed = false
-                };
-                items.Add(item);
+                items.AddRange(OddItemsToAdd);
             }
 
             return items;
         }
-        private List<Item> AddAdditionalEquipmentItems()
+
+        private List<Item> HandleBottles()
         {
             var items = new List<Item>();
-            //Handle the Master Sword
-            var masterSword = new Item()
-            {
-                Name = "Master Sword",
-                ImageURL = $"Master Sword.ico",
-                Model = null,
-                Price = 0,
-                LocationNames = null,
-                HasMultipleLocations = false,
-                Upgrades = null,
-                ItemType = ItemType.Equipment,
-                Order = 21,
-                Revealed = true
-            };
-            var kokiriTunic = new Item()
-            {
-                Name = "Kokiri Tunic",
-                ImageURL = $"Kokiri Tunic.ico",
-                Model = null,
-                Price = 0,
-                LocationNames = null,
-                HasMultipleLocations = false,
-                Upgrades = null,
-                ItemType = ItemType.Equipment,
-                Order = 26,
-                Revealed = true
-            };
-            var kokiriBoots = new Item()
-            {
-                Name = "Kokiri Boots",
-                ImageURL = $"Kokiri Boots.ico",
-                Model = null,
-                Price = 0,
-                LocationNames = null,
-                HasMultipleLocations = false,
-                Upgrades = null,
-                ItemType = ItemType.Equipment,
-                Order = 28,
-                Revealed = true
-            };
 
-            if (!RandomizedSettings.ShuffleKokiriSword)
-            {
-                var item = new Item()
-                {
-                    Name = "Kokiri Sword",
-                    ImageURL = $"Kokiri Sword.ico",
-                    Model = null,
-                    Price = 0,
-                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
-                    HasMultipleLocations = false,
-                    Upgrades = null,
-                    ItemType = ItemType.Equipment,
-                    Order = 20,
-                    Revealed = false
-                };
-                items.Add(item);
-            }
+            var bottle = new Item();
+            var locations = Locations.Where(l => _bottleNames.Contains(l.ItemAtLocation.Name)).Select(l => new ItemLocation() { ID = "", ItemText = l.Name }).ToList();
 
-            if (!RandomizedSettings.ShuffleGerudoCard)
-            {
-                var item = new Item()
-                {
-                    Name = "Gerudo Card",
-                    ImageURL = $"Gerudo Membership Card.ico",
-                    Model = null,
-                    Price = 0,
-                    LocationNames = new List<ItemLocation>() { new ItemLocation() { ItemText = "Vanilla" } },
-                    HasMultipleLocations = false,
-                    Upgrades = null,
-                    ItemType = ItemType.Equipment,
-                    Order = 36,
-                    Revealed = false
-                };
-                items.Add(item);
-            }
+            bottle.Name = "Bottle";
+            bottle.ImageURL = $"{bottle.Name}.ico";
+            bottle.Order = 17;
+            bottle.ItemType = ItemType.MainItem;
+            bottle.HasMultipleLocations = true;
+            bottle.LocationNames = locations;
 
-
-            items.Add(masterSword);
-            items.Add(kokiriTunic);
-            items.Add(kokiriBoots);
+            items.Add(bottle);
+            items.Add(bottle);
+            items.Add(bottle);
+            items.Add(bottle);
 
             return items;
         }
+    }
+    public class CollectionCounter
+    {
+        public string Label { get; set; }
+        public int Count { get; set; } = 0;
     }
     public class Location
     {
@@ -620,7 +617,6 @@ namespace RandomizerAPI.Models.GameModels
         public string ImageURL { get; set; }
         public bool Revealed { get; set; } = false;
     }
-
     public class ItemLocation
     {
         public string ID { get; set; }

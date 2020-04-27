@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RandomizerAPI.Models.GameModels;
+using System;
 using System.IO;
 
 namespace RandomizerAPI.Controllers
@@ -29,8 +30,9 @@ namespace RandomizerAPI.Controllers
 				}
 				return Json($"Upload Failed: No file found.");
 			}
-			catch
+			catch(Exception ex)
 			{
+				
 				return StatusCode(500);
 			}
 		}

@@ -25,25 +25,6 @@ namespace RandomizerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddCors(c =>
-            //{
-            //    //c.AddPolicy("CorsPolicy",
-            //    //    builder => builder.AllowAnyOrigin()
-            //    //    .AllowAnyMethod()
-            //    //    .AllowAnyHeader());
-            //    c.AddPolicy(name: MyAllowSpecificOrigins,
-            //                  options =>
-            //                      options
-            //                      .WithOrigins("https://randomizerapi-dev.ilaena.net/",
-            //                                          "https://randomizerapi.ilaena.net/",
-            //                                          "https://localhost:4200/",
-            //                                          "http://localhost:4200/",
-            //                                          "https://localhost:44362/")
-            //                      //.AllowAnyOrigin()
-            //                      .AllowAnyMethod()
-            //                      .AllowAnyHeader()
-            //                      .AllowCredentials());
-            //});
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
