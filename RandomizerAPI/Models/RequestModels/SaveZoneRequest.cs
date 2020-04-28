@@ -1,8 +1,8 @@
 ﻿using RandomizerAPI.Models.BaseModels;
 
-namespace RandomizerAPI.Controllers
+namespace RandomizerAPI.Models.RequestModels
 {
-    public class CreateZoneRequest
+    public class SaveZoneRequest
     {
         public Zone Zone { get; set; }
     }

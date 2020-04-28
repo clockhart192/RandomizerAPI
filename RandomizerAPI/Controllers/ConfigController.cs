@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using RandomizerAPI.Models.BaseModels;
 using RandomizerAPI.Models.InfrastructureModels;
 using RandomizerAPI.Models.Repository;
+using RandomizerAPI.Models.RequestModels;
 using RandomizerAPI.Models.ResponseModels;
 
 namespace RandomizerAPI.Controllers

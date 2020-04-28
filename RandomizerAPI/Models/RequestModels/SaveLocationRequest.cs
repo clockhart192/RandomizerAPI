@@ -1,6 +1,6 @@
 ﻿using RandomizerAPI.Models.BaseModels;
 
-namespace RandomizerAPI.Controllers
+namespace RandomizerAPI.Models.RequestModels
 {
     public class SaveLocationRequest
     {
