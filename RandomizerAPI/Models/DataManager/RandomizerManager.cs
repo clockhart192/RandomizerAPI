@@ -1,4 +1,6 @@
-﻿using RandomizerAPI.Models.Repository;
+﻿using RandomizerAPI.Models.Context;
+using RandomizerAPI.Models.InfrastructureModels;
+using RandomizerAPI.Models.Repository;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +15,7 @@ namespace RandomizerAPI.Models.DataManager
             _randomizerContext = context;
         }
 
+        #region RandomizerSession
         public IEnumerable<RandomizerSession> GetAll()
         {
             return _randomizerContext.RandomizerSessions.ToList();
@@ -22,6 +25,11 @@ namespace RandomizerAPI.Models.DataManager
         {
             return _randomizerContext.RandomizerSessions
                   .FirstOrDefault(e => e.ID == id);
+        }
+
+        public RandomizerSession GetOrCreate(long id)
+        {
+            throw new System.NotImplementedException();
         }
 
         public RandomizerSession Get(string id)
@@ -51,5 +59,13 @@ namespace RandomizerAPI.Models.DataManager
             _randomizerContext.RandomizerSessions.Remove(session);
             _randomizerContext.SaveChanges();
         }
+
+        public void AddUnique(RandomizerSession entity)
+        {
+            throw new System.NotImplementedException();
+        }
+        #endregion
+
+
     }
 }

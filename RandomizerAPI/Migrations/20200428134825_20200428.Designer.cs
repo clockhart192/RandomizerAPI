@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RandomizerAPI.Models.Context;
 
 namespace RandomizerAPI.Migrations
 {
     [DbContext(typeof(RandomizerSessionContext))]
-    partial class RandomizerSessionContextModelSnapshot : ModelSnapshot
+    [Migration("20200428134825_20200428")]
+    partial class _20200428
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

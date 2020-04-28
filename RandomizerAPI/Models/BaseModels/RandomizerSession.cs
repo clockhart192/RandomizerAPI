@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RandomizerAPI.Models.Context;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace RandomizerAPI.Models
 {
@@ -26,15 +29,5 @@ namespace RandomizerAPI.Models
     {
         Player = 0,
         Spectator = 1
-    }
-
-    public class RandomizerSessionContext : DbContext
-    {
-        public RandomizerSessionContext(DbContextOptions options)
-            : base(options)
-        {
-        }
-
-        public DbSet<RandomizerSession> RandomizerSessions { get; set; }
     }
 }

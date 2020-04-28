@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using System.IO;
+using RandomizerAPI.Models.BaseModels;
+using RandomizerAPI.Models.Repository;
 
 namespace RandomizerAPI.Models.GameModels
 {
@@ -102,6 +104,8 @@ namespace RandomizerAPI.Models.GameModels
                 "Empty Bottle"
             };
 
+        private readonly IDataRepository<Location> _locationRepository;
+
         private void Initialize(InputOoTSpoilerLog inputLog)
         {
             //Base Class Values
@@ -175,12 +179,19 @@ namespace RandomizerAPI.Models.GameModels
                     item = MapItem(inputItem);
                 }
 
-                var location = new Location()
+                var location = _locationRepository.Get(property.Name);
+
+                if (location == null)
                 {
-                    ID = property.Name,
-                    Name = jsonPropertyString,
-                    ItemAtLocation = item
-                };
+                    location = new Location()
+                    {
+                        ID = property.Name,
+                        Name = jsonPropertyString,
+                        ItemAtLocation = item
+                    };
+                    _locationRepository.AddUnique(location);
+                }
+
 
                 locations.Add(location);
             }
@@ -584,51 +595,5 @@ namespace RandomizerAPI.Models.GameModels
 
             return items;
         }
-    }
-    public class CollectionCounter
-    {
-        public string Label { get; set; }
-        public int Count { get; set; } = 0;
-    }
-    public class Location
-    {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public Item ItemAtLocation { get; set; }
-        public bool Revealed { get; set; }
-    }
-    public class Item
-    {
-        public string Name { get; set; }
-        public int Order { get; set; } = 0;
-        public string ImageURL { get; set; }
-        public long Price { get; set; }
-        public string Model { get; set; }
-        public List<Upgrade> Upgrades { get; set; } = null;
-        public bool HasMultipleLocations { get; set; } = false;
-        public bool Revealed { get; set; } = false;
-        public List<ItemLocation> LocationNames { get; set; } = null;
-        public ItemType ItemType { get; set; } = ItemType.Generic;
-    }
-    public class Upgrade
-    {
-        public int ID { get; set; }
-        public string UpgradeText { get; set; }
-        public string ImageURL { get; set; }
-        public bool Revealed { get; set; } = false;
-    }
-    public class ItemLocation
-    {
-        public string ID { get; set; }
-        public string ItemText { get; set; }
-    }
-    public enum ItemType
-    {
-        Generic = 0,
-        MainItem = 1,
-        Equipment = 2,
-        Song = 3,
-        SpiritualStone = 4,
-        Medallion = 5
     }
 }

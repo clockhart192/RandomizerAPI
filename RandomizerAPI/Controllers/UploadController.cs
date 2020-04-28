@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RandomizerAPI.Models.GameModels;
+using RandomizerAPI.Models.InfrastructureModels;
+using RandomizerAPI.Models.Repository;
 using System;
 using System.IO;
 
@@ -11,7 +13,11 @@ namespace RandomizerAPI.Controllers
     [ApiController]
     public class UploadController : Controller
     {
-		public UploadController(){}
+		private readonly IDataRepository<Error> _errorRepository;
+
+		public UploadController(IDataRepository<Error> errorRepository) {
+			_errorRepository = errorRepository;
+		}
 
 		[HttpGet("[action]")]
 		public ActionResult Ping() { return Json("pong!"); }
@@ -32,7 +38,7 @@ namespace RandomizerAPI.Controllers
 			}
 			catch(Exception ex)
 			{
-				
+				_errorRepository.Add(new Error(ex));
 				return StatusCode(500);
 			}
 		}

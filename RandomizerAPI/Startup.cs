@@ -7,7 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RandomizerAPI.HubConfig;
 using RandomizerAPI.Models;
+using RandomizerAPI.Models.BaseModels;
+using RandomizerAPI.Models.Context;
 using RandomizerAPI.Models.DataManager;
+using RandomizerAPI.Models.InfrastructureModels;
 using RandomizerAPI.Models.Repository;
 using System;
 
@@ -47,6 +50,9 @@ namespace RandomizerAPI
 
             services.AddDbContext<RandomizerSessionContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:RandomizerDB"]));
             services.AddScoped<IDataRepository<RandomizerSession>, RandomizerManager>();
+            services.AddScoped<IDataRepository<Error>, ErrorManager>();
+            services.AddScoped<IDataRepository<Location>, LocationManager>();
+            services.AddScoped<IDataRepository<Zone>, ZoneManager>();
 
             services.AddControllers(); 
 

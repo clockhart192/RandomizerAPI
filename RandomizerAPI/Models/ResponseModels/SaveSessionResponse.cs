@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RandomizerAPI.Models.ResponseModels
 {
-    public class SaveSessionResponse
+    public class SaveSessionResponse : BaseResponse
     {
         public string ID { get; set; }
         public OoTSpoilerLog SpoilerLog { get; set; }
