@@ -12,7 +12,7 @@ namespace RandomizerAPI.Models.BaseModels
         public Item ItemAtLocation { get; set; }
         [NotMapped]
         public bool Revealed { get; set; }
-        public int ZoneID { get; set; } = 0;
+        public int ZoneID { get; set; } = 1;
         public string DefaultItemAtLocationName { get; set; } = "Vanilla";
     }
 }

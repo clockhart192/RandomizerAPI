@@ -4,7 +4,7 @@ using RandomizerAPI.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Z.EntityFramework.Extensions;
 
 namespace RandomizerAPI.Models.DataManager
 {
@@ -19,6 +19,12 @@ namespace RandomizerAPI.Models.DataManager
         public void Add(Location entity)
         {
             _randomizerContext.Locations.Add(entity);
+            _randomizerContext.SaveChanges();
+        }
+
+        public void AddMany(List<Location> entities)
+        {
+            _randomizerContext.Locations.AddRange(entities);
             _randomizerContext.SaveChanges();
         }
 
@@ -59,9 +65,20 @@ namespace RandomizerAPI.Models.DataManager
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Location> GetSome(IEnumerable<int> ids)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Location dbEntity, Location entity)
         {
+            _randomizerContext.Locations.Update(entity);
             _randomizerContext.SaveChanges();
+        }
+
+        public void UpdateMany( List<Location> entities)
+        {
+            _randomizerContext.Locations.BulkUpdate(entities);
         }
     }
 }

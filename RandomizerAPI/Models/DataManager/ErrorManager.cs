@@ -62,6 +62,21 @@ namespace RandomizerAPI.Models.DataManager
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Error> GetSome(IEnumerable<int> ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddMany(List<Error> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateMany(List<Error> entities)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

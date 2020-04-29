@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RandomizerAPI.Models.BaseModels;
 using RandomizerAPI.Models.GameModels;
 using RandomizerAPI.Models.InfrastructureModels;
 using RandomizerAPI.Models.Repository;
@@ -14,9 +15,11 @@ namespace RandomizerAPI.Controllers
     public class UploadController : Controller
     {
 		private readonly IDataRepository<Error> _errorRepository;
+		private readonly IDataRepository<Location> _locationRepository;
 
-		public UploadController(IDataRepository<Error> errorRepository) {
+		public UploadController(IDataRepository<Error> errorRepository, IDataRepository<Location> locationRepository) {
 			_errorRepository = errorRepository;
+			_locationRepository = locationRepository;
 		}
 
 		[HttpGet("[action]")]
@@ -31,7 +34,7 @@ namespace RandomizerAPI.Controllers
 				if (file.Length > 0)
 				{
 					var reader = new StreamReader(file.OpenReadStream());
-					OoTSpoilerLog log = new OoTSpoilerLog(JsonConvert.DeserializeObject<InputOoTSpoilerLog>(reader.ReadToEnd()));
+					OoTSpoilerLog log = new OoTSpoilerLog(JsonConvert.DeserializeObject<InputOoTSpoilerLog>(reader.ReadToEnd()),_locationRepository);
 					return Json(log);
 				}
 				return Json($"Upload Failed: No file found.");

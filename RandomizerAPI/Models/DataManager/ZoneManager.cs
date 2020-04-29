@@ -28,6 +28,11 @@ namespace RandomizerAPI.Models.DataManager
             _randomizerContext.SaveChanges();
         }
 
+        public void AddMany(List<Zone> entities)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddUnique(Zone entity)
         {
             var ret = Get(entity.Name);
@@ -76,11 +81,21 @@ namespace RandomizerAPI.Models.DataManager
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Zone> GetSome(IEnumerable<int> ids)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Zone dbEntity, Zone entity)
         {
             dbEntity.Name = entity.Name;
             dbEntity.OrderID = entity.OrderID;
             _randomizerContext.SaveChanges();
+        }
+
+        public void UpdateMany(List<Zone> entities)
+        {
+            throw new NotImplementedException();
         }
     }
 }

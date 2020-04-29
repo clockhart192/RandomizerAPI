@@ -64,6 +64,21 @@ namespace RandomizerAPI.Models.DataManager
         {
             throw new System.NotImplementedException();
         }
+
+        public IEnumerable<RandomizerSession> GetSome(IEnumerable<int> ids)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddMany(List<RandomizerSession> entities)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void UpdateMany(List<RandomizerSession> entities)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
 
 

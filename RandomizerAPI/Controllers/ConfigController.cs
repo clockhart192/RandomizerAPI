@@ -45,7 +45,7 @@ namespace RandomizerAPI.Controllers
         {
             try
             {
-                var all = _zoneRepository.GetAll();
+                var all = _zoneRepository.GetAll().OrderBy(z=> z.OrderID);
                 return Json(all);
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace RandomizerAPI.Controllers
         public ActionResult CreateZone(CreateZoneRequest request)
         {
             _zoneRepository.Add(request.Zone);
-            return Json(_zoneRepository.Get(request.Zone.Name));
+            return Json(_zoneRepository.GetAll().OrderBy(z => z.OrderID));
         }
 
         [HttpPost("[action]")]
@@ -74,7 +74,7 @@ namespace RandomizerAPI.Controllers
 
             _zoneRepository.Update(original, request.Zone);
 
-            return Json(resp);
+            return Json(_zoneRepository.GetAll().OrderBy(z => z.OrderID));
         }
 
         [HttpPost("[action]")]
@@ -82,7 +82,7 @@ namespace RandomizerAPI.Controllers
         {
             _zoneRepository.Delete(request.Zone);
             var all = _zoneRepository.GetAll();
-            return Json(all);
+            return Json(_zoneRepository.GetAll().OrderBy(z => z.OrderID));
         }
         #endregion
 

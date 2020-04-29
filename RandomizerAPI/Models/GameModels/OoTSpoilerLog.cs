@@ -5,6 +5,9 @@ using System.Linq;
 using System.IO;
 using RandomizerAPI.Models.BaseModels;
 using RandomizerAPI.Models.Repository;
+using Microsoft.Extensions.DependencyInjection;
+using RandomizerAPI.Models.Context;
+using RandomizerAPI.Models.DataManager;
 
 namespace RandomizerAPI.Models.GameModels
 {
@@ -104,10 +107,11 @@ namespace RandomizerAPI.Models.GameModels
                 "Empty Bottle"
             };
 
-        private readonly IDataRepository<Location> _locationRepository;
+        private IDataRepository<Location> _locationRepository;
 
-        private void Initialize(InputOoTSpoilerLog inputLog)
+        private void Initialize(InputOoTSpoilerLog inputLog, IDataRepository<Location> locationRepository = null)
         {
+            _locationRepository = locationRepository;
             //Base Class Values
             Version = inputLog.Version;
             Seed = inputLog.Seed;
@@ -132,7 +136,7 @@ namespace RandomizerAPI.Models.GameModels
 
         public OoTSpoilerLog() { }
 
-        public OoTSpoilerLog(string seed, string webRootPath)
+        public OoTSpoilerLog(string seed, string webRootPath, IDataRepository<Location> locationRepository = null)
         {
             string folderName = "Upload";
             string newPath = Path.Combine(webRootPath, folderName);
@@ -151,17 +155,19 @@ namespace RandomizerAPI.Models.GameModels
 
                 InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
 
-                Initialize(Inputlog);
+                Initialize(Inputlog, locationRepository);
             }
         }
-        public OoTSpoilerLog(InputOoTSpoilerLog inputLog)
+        public OoTSpoilerLog(InputOoTSpoilerLog inputLog, IDataRepository<Location> locationRepository = null)
         {
-            Initialize(inputLog);
+            Initialize(inputLog, locationRepository);
         }
 
         private List<Location> MapLocations(object inputLocations)
         {
             var locations = new List<Location>();
+            var dbLocations = _locationRepository.GetAll();
+
             foreach (var property in inputLocations.GetType().GetProperties())
             {
                 var item = new Item();
@@ -179,8 +185,8 @@ namespace RandomizerAPI.Models.GameModels
                     item = MapItem(inputItem);
                 }
 
-                var location = _locationRepository.Get(property.Name);
-
+                var location = dbLocations.SingleOrDefault(l => l.Name == jsonPropertyString);
+                
                 if (location == null)
                 {
                     location = new Location()
@@ -190,6 +196,10 @@ namespace RandomizerAPI.Models.GameModels
                         ItemAtLocation = item
                     };
                     _locationRepository.AddUnique(location);
+                }
+                else
+                {
+                    location.ItemAtLocation = item;
                 }
 
 
