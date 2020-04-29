@@ -65,13 +65,7 @@ namespace RandomizerAPI.Controllers
         [HttpPost("[action]")]
         public ActionResult SaveZone(SaveZoneRequest request)
         {
-            var resp = new BaseResponse()
-            {
-                Success = true
-            };
-
             var original = _zoneRepository.Get(request.Zone.ID);
-
             _zoneRepository.Update(original, request.Zone);
 
             return Json(_zoneRepository.GetAll().OrderBy(z => z.OrderID));
@@ -81,7 +75,6 @@ namespace RandomizerAPI.Controllers
         public ActionResult DeleteZone(DeleteZoneRequest request)
         {
             _zoneRepository.Delete(request.Zone);
-            var all = _zoneRepository.GetAll();
             return Json(_zoneRepository.GetAll().OrderBy(z => z.OrderID));
         }
         #endregion
@@ -92,8 +85,7 @@ namespace RandomizerAPI.Controllers
         {
             try
             {
-                var all = _locationRepository.GetAll();
-                return Json(all);
+                return Json(_locationRepository.GetAll());
             }
             catch (Exception ex)
             {
@@ -107,7 +99,10 @@ namespace RandomizerAPI.Controllers
         {
             var l = new Location()
             {
-
+                ID = request.Location.Name.Replace(" ",""),
+                Name = request.Location.Name,
+                ZoneID = request.Location.ZoneID,
+                DefaultItemAtLocationName = request.Location.DefaultItemAtLocationName
             };
 
             _locationRepository.Add(request.Location);
@@ -128,6 +123,15 @@ namespace RandomizerAPI.Controllers
             _locationRepository.Update(original, request.Location);
 
             return Json(resp);
+        }
+
+        [HttpPost("[action]")]
+        public ActionResult SaveLocations(SaveLocationRequests request)
+        {
+
+            _locationRepository.UpdateMany(request.Locations);
+
+            return Json(_locationRepository.GetAll());
         }
 
 

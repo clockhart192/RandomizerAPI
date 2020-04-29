@@ -79,6 +79,7 @@ namespace RandomizerAPI.Models.DataManager
         public void UpdateMany( List<Location> entities)
         {
             _randomizerContext.Locations.BulkUpdate(entities);
+            _randomizerContext.SaveChanges();
         }
     }
 }
