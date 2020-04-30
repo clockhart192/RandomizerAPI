@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using RandomizerAPI.Models.BaseModels;
+using RandomizerAPI.Models.Repository;
 
 namespace RandomizerAPI.Models.GameModels
 {

@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using RandomizerAPI.HubConfig;
 using RandomizerAPI.Models;
+using RandomizerAPI.Models.BaseModels;
 using RandomizerAPI.Models.GameModels;
 using RandomizerAPI.Models.Repository;
 using RandomizerAPI.Models.RequestModels;
 using RandomizerAPI.Models.ResponseModels;
 using System;
+using System.Linq;
 
 namespace RandomizerAPI.Controllers
 {
@@ -16,12 +18,18 @@ namespace RandomizerAPI.Controllers
     public class SessionController : Controller
     {
         private readonly IDataRepository<RandomizerSession> _dataRepository;
+        private readonly IDataRepository<Location> _locationRepository;
+        private readonly IDataRepository<Zone> _zoneRepository;
 
         public SessionController(
-            IDataRepository<RandomizerSession> dataRepository
+            IDataRepository<RandomizerSession> dataRepository,
+            IDataRepository<Location> locationRepository,
+            IDataRepository<Zone> zoneRepository
             )
         {
             _dataRepository = dataRepository;
+            _locationRepository = locationRepository;
+            _zoneRepository = zoneRepository;
         }
 
         [HttpGet("[action]")]
@@ -89,6 +97,7 @@ namespace RandomizerAPI.Controllers
             var session = _dataRepository.Get(request.ID);
 
             var RandomizerSession = new OoTRandomizerSession(session, request.SessionView);
+            RandomizerSession.SpoilerLog.Zones = RandomizerSession.SpoilerLog.Zones.OrderBy(z=>z.OrderID).ToList();
 
             return Json(RandomizerSession);
         }

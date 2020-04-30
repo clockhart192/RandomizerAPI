@@ -16,10 +16,14 @@ namespace RandomizerAPI.Controllers
     {
 		private readonly IDataRepository<Error> _errorRepository;
 		private readonly IDataRepository<Location> _locationRepository;
+		private readonly IDataRepository<Zone> _zoneRepository;
 
-		public UploadController(IDataRepository<Error> errorRepository, IDataRepository<Location> locationRepository) {
+		public UploadController(IDataRepository<Error> errorRepository,
+			IDataRepository<Location> locationRepository,
+			IDataRepository<Zone> zoneRepository) {
 			_errorRepository = errorRepository;
 			_locationRepository = locationRepository;
+			_zoneRepository = zoneRepository;
 		}
 
 		[HttpGet("[action]")]
@@ -34,7 +38,7 @@ namespace RandomizerAPI.Controllers
 				if (file.Length > 0)
 				{
 					var reader = new StreamReader(file.OpenReadStream());
-					OoTSpoilerLog log = new OoTSpoilerLog(JsonConvert.DeserializeObject<InputOoTSpoilerLog>(reader.ReadToEnd()),_locationRepository);
+					OoTSpoilerLog log = new OoTSpoilerLog(JsonConvert.DeserializeObject<InputOoTSpoilerLog>(reader.ReadToEnd()),_locationRepository, _zoneRepository);
 					return Json(log);
 				}
 				return Json($"Upload Failed: No file found.");

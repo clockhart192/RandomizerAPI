@@ -17,6 +17,7 @@ namespace RandomizerAPI.Models.GameModels
         public RandomizedSettings RandomizedSettings { get; set; }
         public Item FreeItem { get; set; }
         public List<Location> Locations { get; set; }
+        public List<Zone> Zones { get; set; }
         public List<Item> MainItems { get; set; }
         public List<Item> Equipment { get; set; }
         public List<Item> Songs { get; set; }
@@ -108,10 +109,12 @@ namespace RandomizerAPI.Models.GameModels
             };
 
         private IDataRepository<Location> _locationRepository;
+        private IDataRepository<Zone> _zoneRepository;
 
-        private void Initialize(InputOoTSpoilerLog inputLog, IDataRepository<Location> locationRepository = null)
+        private void Initialize(InputOoTSpoilerLog inputLog, IDataRepository<Location> locationRepository = null, IDataRepository<Zone> zoneRepository = null)
         {
             _locationRepository = locationRepository;
+            _zoneRepository = zoneRepository;
             //Base Class Values
             Version = inputLog.Version;
             Seed = inputLog.Seed;
@@ -126,6 +129,11 @@ namespace RandomizerAPI.Models.GameModels
             var MasterLocations = MapLocations(inputLog.Locations);
 
             Locations = MasterLocations;
+
+            Zones = _zoneRepository.GetAll().ToList();
+
+            Zones.ForEach(Zone => Zone.Locations = MasterLocations.Where(l => l.ZoneID == Zone.ID).ToList());
+
             FreeItem = MasterLocations.SingleOrDefault(location => location.ID == "LinksPocket").ItemAtLocation;
 
             MainItems = MapItems(_mainNames, HandleBottles()).OrderBy(l => l.Order).ToList();
@@ -136,7 +144,7 @@ namespace RandomizerAPI.Models.GameModels
 
         public OoTSpoilerLog() { }
 
-        public OoTSpoilerLog(string seed, string webRootPath, IDataRepository<Location> locationRepository = null)
+        public OoTSpoilerLog(string seed, string webRootPath, IDataRepository<Location> locationRepository = null, IDataRepository<Zone> zoneRepository = null)
         {
             string folderName = "Upload";
             string newPath = Path.Combine(webRootPath, folderName);
@@ -155,12 +163,12 @@ namespace RandomizerAPI.Models.GameModels
 
                 InputOoTSpoilerLog Inputlog = JsonConvert.DeserializeObject<InputOoTSpoilerLog>(json);
 
-                Initialize(Inputlog, locationRepository);
+                Initialize(Inputlog, locationRepository, zoneRepository);
             }
         }
-        public OoTSpoilerLog(InputOoTSpoilerLog inputLog, IDataRepository<Location> locationRepository = null)
+        public OoTSpoilerLog(InputOoTSpoilerLog inputLog, IDataRepository<Location> locationRepository = null, IDataRepository<Zone> zoneRepository = null)
         {
-            Initialize(inputLog, locationRepository);
+            Initialize(inputLog, locationRepository, zoneRepository);
         }
 
         private List<Location> MapLocations(object inputLocations)

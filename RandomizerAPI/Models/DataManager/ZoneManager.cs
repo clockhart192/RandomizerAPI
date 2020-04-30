@@ -13,7 +13,7 @@ namespace RandomizerAPI.Models.DataManager
 
         private readonly List<Zone> _initialSeedData = new List<Zone>()
         {
-            new Zone(){ Name = "Unspecified", OrderID = 0, Locaitons = null }
+            new Zone(){ Name = "Unspecified", OrderID = 0, Locations = null }
         }; 
         readonly RandomizerSessionContext _randomizerContext;
 

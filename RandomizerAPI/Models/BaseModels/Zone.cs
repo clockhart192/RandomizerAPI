@@ -12,6 +12,6 @@ namespace RandomizerAPI.Models.BaseModels
         public string Name { get; set; }
         public int OrderID { get; set; } = 0;
         [NotMapped]
-        public List<Location> Locaitons { get; set; }
+        public List<Location> Locations { get; set; }
     }
 }
