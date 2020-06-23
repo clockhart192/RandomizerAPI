@@ -13,6 +13,7 @@ namespace RandomizerAPI.Models
         public string Seed { get; set; }
         [JsonProperty(":settings_string")]
         public string SettingsString { get; set; }
-       
+        public string Notes { get; set; }
+
     }
 }
